@@ -121,7 +121,8 @@ $font_family_lucida: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Luc
         transition: border-color 0.3s, background-color 0.3s;
         border-radius: 20px;
         margin-bottom: 2%;
-        width: 50%;
+        width: 170px;
+        height: 200px;
       }
   
       .titulo_plan{
@@ -140,14 +141,38 @@ $font_family_lucida: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Luc
         text-align: center;
         font-size: 1rem;
       }
-
-      .list_plan{
-        text-align: justify;
+      /* SWEET ALERT PLAN DATA */
+      .list-container_plan_alert{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
       }
+      .title_alert_plans{
+        margin-top: 2%;
+        font-family: $font_family_roboto;
+        font-style: italic;
+      }
+      
+      .list_plan{
+        text-align: center;
+        margin-top: 5%;
+        padding: 2%;
+        list-style-type: none;
+        border: 2px solid #841cd8;
+        border-radius: 15px;
+        width: 65%;
+        font-family: $font_family_roboto;
+      }
+      .list_plan li {
+        margin-bottom: 4%; /* Espacio en la parte superior */
+      }
+
       .plan_cost{
         font-size: 1.5rem;
         font-family: Lucida Console;
         text-align: center;
+        font-style: italic;
       }
 
       .price-container {
@@ -197,6 +222,10 @@ $font_family_lucida: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Luc
         text-align: right;
       }
       
+      .titulo_tabla_int{
+        font-size: 1.2rem;
+        font-family: $font_family_roboto;
+      }
       .cond {
         border-top: solid 2px #000;
       }

@@ -822,7 +822,8 @@ fieldset[disabled] .botones_parrafos.active {
     transition: border-color 0.3s, background-color 0.3s;
     border-radius: 20px;
     margin-bottom: 2%;
-    width: 50%;
+    width: 170px;
+    height: 200px;
   }
   .titulo_plan {
     font-size: 1.5rem;
@@ -838,13 +839,36 @@ fieldset[disabled] .botones_parrafos.active {
     text-align: center;
     font-size: 1rem;
   }
+  /* SWEET ALERT PLAN DATA */
+  .list-container_plan_alert {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  .title_alert_plans {
+    margin-top: 2%;
+    font-family: "Roboto", sans-serif;
+    font-style: italic;
+  }
   .list_plan {
-    text-align: justify;
+    text-align: center;
+    margin-top: 5%;
+    padding: 2%;
+    list-style-type: none;
+    border: 2px solid #841cd8;
+    border-radius: 15px;
+    width: 65%;
+    font-family: "Roboto", sans-serif;
+  }
+  .list_plan li {
+    margin-bottom: 4%; /* Espacio en la parte superior */
   }
   .plan_cost {
     font-size: 1.5rem;
     font-family: Lucida Console;
     text-align: center;
+    font-style: italic;
   }
   .price-container {
     display: flex;
@@ -883,6 +907,10 @@ fieldset[disabled] .botones_parrafos.active {
   .factura > tfoot > tr > th, .factura > tfoot > tr > th:nth-child(n+3) {
     font-size: 24px;
     text-align: right;
+  }
+  .titulo_tabla_int {
+    font-size: 1.2rem;
+    font-family: "Roboto", sans-serif;
   }
   .cond {
     border-top: solid 2px #000;

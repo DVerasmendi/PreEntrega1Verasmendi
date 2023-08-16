@@ -16,26 +16,44 @@ plans.forEach((plan) => {
     switch (planValue) {
       case "Plan Oro":
         Swal.fire({
-            icon: 'success',
-            title: '<h1 class="titulos_sweet_alert">Has seleccionado el Plan Oro</h1>',
-            html: '<div class="image-container"><img src="../static/img/oro.png" alt="" style="width: 100px;"></div>',
+            icon: 'info',
+            title: '<h1 class="titulos_sweet_alert">Plan Oro</h1>',
+            html: '<div class="image-container"><img src="../static/img/oro.png" alt="" style="width: 50px;"></div>' +
+            '<div class="list-container_plan_alert">'+  
+            '<h3 class="title_alert_plans">Beneficios</h3>'+
+            '<ul class="list_plan">' +
+            '<li>Website dinámica</li>' +
+            '<li>Integraciones de pago</li>' +
+            '<li>Asesoría en UX/UI</li>' +
+            '<li>Asesoría en servers</li>' +
+            '<li>Asesoría gratuita por 3 meses</li>' +
+            '</ul>'+
+            '</div>',
             showCancelButton: false,
             confirmButtonText: 'OK',
             allowOutsideClick: false,
             customClass: {
-              confirmButton: 'custom-swal-confirm-button'
+            confirmButton: 'custom-swal-confirm-button'
             }
           }).then((result) => {
             if (result.isConfirmed) {
               // Acciones adicionales después de hacer clic en OK
-            }
+            }          
           });
         break;
       case "Plan Plata":
         Swal.fire({
-            icon: 'success',
-            title: '<h1 class="titulos_sweet_alert">Has seleccionado el Plan Plata</h1>',
-            html: '<div class="image-container"><img src="../static/img/plata.png" alt="" style="width: 100px;"></div>',
+            icon: 'info',
+            title: '<h1 class="titulos_sweet_alert">Plan Plata</h1>',
+            html: '<div class="image-container"><img src="../static/img/plata.png" alt="" style="width: 50px;"></div>' +
+            '<div class="list-container_plan_alert">'+  
+            '<h3 class="title_alert_plans">Beneficios</h3>'+
+            '<ul class="list_plan">' +
+            '<li>Website dinámica</li>' +
+            '<li>Integraciones de pago</li>' +
+            '<li>Asesoría en UX/UI</li>' +
+            '</ul>'+
+            '</div>',
             showCancelButton: false,
             confirmButtonText: 'OK',
             allowOutsideClick: false,
@@ -45,14 +63,21 @@ plans.forEach((plan) => {
           }).then((result) => {
             if (result.isConfirmed) {
               // Acciones adicionales después de hacer clic en OK
-            }
+            }    
           });
         break;
       case "Plan Bronce":
         Swal.fire({
-            icon: 'success',
-            title: '<h1 class="titulos_sweet_alert">Has seleccionado el Plan Bronce</h1>',
-            html: '<div class="image-container"><img src="../static/img/bronce.png" alt="" style="width: 100px;"></div>',
+            icon: 'info',
+            title: '<h1 class="titulos_sweet_alert">Plan Bronce</h1>',
+            html: '<div class="image-container"><img src="../static/img/bronce.png" alt="" style="width: 50px;"></div>' +
+            '<div class="list-container_plan_alert">'+  
+            '<h3 class="title_alert_plans">Beneficios</h3>'+
+            '<ul class="list_plan">' +
+            '<li>Website estática</li>' +
+            '<li>Asesoría en UX/UI</li>' +
+            '</ul>'+
+            '</div>',
             showCancelButton: false,
             confirmButtonText: 'OK',
             allowOutsideClick: false,
@@ -62,7 +87,7 @@ plans.forEach((plan) => {
           }).then((result) => {
             if (result.isConfirmed) {
               // Acciones adicionales después de hacer clic en OK
-            }
+            }    
           });
         break;
     }
@@ -79,6 +104,12 @@ function calcular_iva(costo) {
     return costo_total
   }
 
+function getRandomInt(min, max) {
+return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+
+  
 const form = document.querySelector(".contacto-formulario");
 const plantilla = document.querySelector(".plantilla");
 const nombreSpan = document.getElementById("nombre");
@@ -93,6 +124,7 @@ const fecha_valido_hasta = document.getElementById("fecha_valido_hasta");
 const costo_iva = document.getElementById("costo_iva");
 const costo_total_span = document.getElementById("costo_total_span");
 const pais_span = document.getElementById("pais_span");
+const num_cotizacion_span = document.getElementById("num_cotizacion");
 
 plans.forEach((plan) => {
   plan.addEventListener("click", () => {
@@ -112,11 +144,11 @@ plans.forEach((plan) => {
 
     iva= calcular_iva(costo);
     costo_total=costo_total_proyecto(costo,iva)
-
     console.log('COSTO:'+costo+' | IVA: '+iva+' | COSTO TOTAL: '+costo_total)
     costoSpan.textContent = costo;
     costo_iva.textContent = iva;
     costo_total_span.textContent = costo_total;
+    num_cotizacion_span.textContent = getRandomInt(100, 999);
 
     // Mostrar la plantilla
     plantilla.style.display = "block";
@@ -235,6 +267,44 @@ input.addEventListener("input", function () {
   
   });
 
-  input.addEventListener("focus", function() {
-    input.value = ""; // Borrar el contenido del input al hacer clic
+input.addEventListener("focus", function() {
+input.value = ""; // Borrar el contenido del input al hacer clic
+});
+
+/* PARTE DE DARLE CLICK AL BOTON ENVIAR */
+var boton_enviar_cotizacion = document.getElementById("boton_enviar_cotizacion");
+boton_enviar_cotizacion.addEventListener("click", () => {
+    var tipo_plan = document.getElementById("plan").textContent;
+
+if (nombreInput.value!='' && emailInput.value!=''  && inputPais.value!=''){
+    Swal.fire({
+        icon: 'success',
+        title: '<h1 class="titulos_sweet_alert">Cotización a enviar</h1>',
+        html: '<div class="image-container"><img src="../static/img/contento.png" alt="" style="width: 50px;"></div>' +
+        '<div class="list-container_plan_alert">'+  
+        '<h3 class="title_alert_plans">' + tipo_plan + '</h3>'+
+        '</div>',
+        showCancelButton: false,
+        confirmButtonText: 'OK',
+        allowOutsideClick: false,
+        customClass: {
+        confirmButton: 'custom-swal-confirm-button'
+        }
+      }).then((result) => {
+        if (result.isConfirmed) {
+          // Acciones adicionales después de hacer clic en OK
+        }
+    });
+}
+else{
+    Swal.fire({
+        icon: 'error',
+        title: 'Error',
+        text: 'Debe llenar todos los datos del formulario para poder cotizar.',
+        confirmButtonText: 'OK',
+        customClass: {
+          confirmButton: 'custom-swal-confirm-button'
+        }
+      });
+}
   });
