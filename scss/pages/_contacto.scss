@@ -1,0 +1,309 @@
+// Variables generales
+$font_family_roboto: 'Roboto', sans-serif;
+$font_family_lucida: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+// VERSION MOBILE //
+@media (max-width: 320px) {
+.contact-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 40rem;
+}
+.contacto-principal {
+    text-align: center;
+}
+.contacto-principal__titulo {
+    text-align: center;
+    font-family: $font_family_roboto;
+    font-size: 1.1rem;
+    margin-bottom: 5%;
+}
+.contacto-formulario {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-left: 1%;
+    margin-right: 1%;
+    margin-top: 10%;
+    width: 100%;
+}
+.contacto-formulario__input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+}
+.contacto-formulario__textarea {
+    width: 100%;
+    height: 150px;
+}
+
+.contacto-formulario__boton {
+    padding: 10px 20px;
+    background-color: #95a8e7;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-top: 5%;
+}
+.whatsapp-logo {
+    width: 50px;
+    height: 50px;
+    transition: width 0.3s ease, height 0.3s ease;
+}
+}
+//  VERSION TABLETS //
+@media (min-width: 321px) and (max-width: 767px) {
+.contact-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 40rem;
+}
+.contacto-principal {
+    text-align: center;
+    margin-bottom: 5%;
+}
+.contacto-principal__titulo {
+    text-align: center;
+    font-family: $font_family_roboto;
+    font-size: 1.1rem;
+    margin-bottom: 5%;
+}
+.contacto-formulario {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-left: 1%;
+    margin-right: 1%;
+    margin-top: 10%;
+    width: 100%;
+}
+.contacto-formulario__input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+}
+.contacto-formulario__textarea {
+    width: 100%;
+    height: 150px;
+}
+.contacto-formulario__boton {
+    padding: 10px 20px;
+    background-color: #95a8e7;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-top: 5%;
+}
+.whatsapp-logo {
+    width: 50px;
+    height: 50px;
+    transition: width 0.3s ease, height 0.3s ease;
+}    
+}
+// VERSION LAPTOPS //
+@media (min-width: 768px) {
+    .planes-container {
+        display: flex;
+        justify-content: space-around;
+        gap: 20px;
+      }
+  
+      .plan {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        cursor: pointer;
+        border: 2px solid #ccc;
+        padding: 5px;
+        transition: border-color 0.3s, background-color 0.3s;
+        border-radius: 20px;
+        margin-bottom: 2%;
+        width: 50%;
+      }
+  
+      .titulo_plan{
+        font-size: 1.5rem;
+      }
+      .plan:hover {
+        border-color: #007bff;
+      }
+  
+      .plan.selected {
+        background-color: #1451b4;
+        color: #fff;
+      }
+  
+      .plan-info {
+        text-align: center;
+        font-size: 1rem;
+      }
+
+      .list_plan{
+        text-align: justify;
+      }
+      .plan_cost{
+        font-size: 1.5rem;
+        font-family: Lucida Console;
+        text-align: center;
+      }
+
+      .price-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: 20px;
+      }
+
+      .titulo_boleta{
+        font-size: 1.1rem;
+        font-family: $font_family_roboto;
+      }
+      .data_number_cotizacion{
+        font-family: Lucida Console;;
+      }
+      
+      .factura {
+        table-layout: fixed;
+      }
+      
+      .fact-info > div > h5 {
+        font-weight: bold;
+        border-radius: 20px;
+      }
+      
+      .factura > thead {
+        border-top: solid 3px #000;
+        border-bottom: 3px solid #000;
+        border-radius: 20px;
+      }
+      
+      .factura > thead > tr > th:nth-child(2), .factura > tbod > tr > td:nth-child(2) {
+        width: 300px;
+      }
+      
+      .factura > thead > tr > th:nth-child(n+3) {
+        text-align: right;
+      }
+      
+      .factura > tbody > tr > td:nth-child(n+3) {
+        text-align: right;
+      }
+      
+      .factura > tfoot > tr > th, .factura > tfoot > tr > th:nth-child(n+3) {
+        font-size: 24px;
+        text-align: right;
+      }
+      
+      .cond {
+        border-top: solid 2px #000;
+      }
+
+.contact-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.contacto-principal__titulo {
+    margin-bottom: 2%;
+    margin-top: 5%;
+    text-align: center;
+    font-family: $font_family_roboto;
+    font-size: 1.5rem;
+}
+.contacto-principal {
+    text-align: center;
+    margin-bottom: 5%;
+    width: 100%;
+}
+.contacto-formulario {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 auto;
+    width: 65%;
+}
+.contacto-formulario__input {
+    width: 57%;
+    padding: 10px;
+    margin-bottom: 5px;
+    border-radius: 10px;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+    font-size: 0.9rem;
+}
+.contacto-formulario__textarea {
+    width: 57%;
+    padding: 10px;
+    border-radius: 10px;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.1rem;
+}
+.contacto-formulario__boton {
+    width: 57%;
+    padding: 10px 20px;
+    background-color: #95a8e7;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-top: 1%;
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.5rem;
+}
+.whatsapp-logo {
+    width: 80px;
+    height: 80px;
+    transition: width 0.3s ease, height 0.3s ease;
+}
+
+
+
+
+  
+  
+  div { 
+    font-family: 'Roboto Condensed', sans-serif;
+    font-weight: bold;
+    font-size: 1rem;
+  }
+
+  .radio-buttons {
+    display: flex;
+    justify-content: center;
+  }
+  
+  
+  .form-control {
+    width: 200px;
+  }
+  
+  .radio-buttons-group input[type="radio"] {
+    display: none;
+  }
+  
+
+
+  .radio-buttons-group {
+    display: flex;
+    justify-content: center; /* Alineación horizontal al centro */
+    align-items: center; /* Alineación vertical al centro */
+    margin-top: 5%;
+  }
+  
+  .form-check-inline {
+    display: flex;
+    align-items: center;
+    margin-right: 10px; /* Espacio entre los elementos */
+  }
+  
+  .form-check-label {
+    margin-left: 5px; /* Espacio entre el icono y el texto */
+  }
+  
+
+  
+  
+}

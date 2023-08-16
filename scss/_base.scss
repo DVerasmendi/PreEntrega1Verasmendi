@@ -1,0 +1,144 @@
+// Todo el estilo general de mi sitio , variables, etc . body , reseteo de formato css
+*{
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+}
+body {
+background: rgb(88,0,255);
+background: linear-gradient(90deg, rgba(88,0,255,0.4290966386554622) 0%, rgba(114,255,255,0.7876400560224089) 35%, rgba(0,215,255,0.7372198879551821) 100%);
+}
+
+.botones_parrafos {
+	color: #FFFFFF;
+	background-color: #1161BD;
+	border-color: #130269;
+	border-radius: 20px;
+	padding: 9px;
+	font-family: 'Roboto', sans-serif;
+	font-weight: bold;
+	font-size: 1rem;
+	&:hover {
+		color: #FFFFFF;
+		background-color: #7144AB;
+		border-color: #130269;
+	}
+	&:focus {
+		color: #FFFFFF;
+		background-color: #7144AB;
+		border-color: #130269;
+	}
+	&:active {
+		color: #FFFFFF;
+		background-color: #7144AB;
+		border-color: #130269;
+		background-image: none;
+	}
+	.badge {
+		color: #1161BD;
+		background-color: #FFFFFF;
+	}
+}
+.botones_parrafos.active {
+	color: #FFFFFF;
+	background-color: #7144AB;
+	border-color: #130269;
+	background-image: none;
+}
+.open {
+	.dropdown-toggle.botones_parrafos {
+		color: #FFFFFF;
+		background-color: #7144AB;
+		border-color: #130269;
+		background-image: none;
+	}
+}
+.botones_parrafos.disabled {
+	background-color: #1161BD;
+	border-color: #130269;
+	&:hover {
+		background-color: #1161BD;
+		border-color: #130269;
+	}
+	&:focus {
+		background-color: #1161BD;
+		border-color: #130269;
+	}
+	&:active {
+		background-color: #1161BD;
+		border-color: #130269;
+	}
+}
+.botones_parrafos[disabled] {
+	background-color: #1161BD;
+	border-color: #130269;
+	&:hover {
+		background-color: #1161BD;
+		border-color: #130269;
+	}
+	&:focus {
+		background-color: #1161BD;
+		border-color: #130269;
+	}
+	&:active {
+		background-color: #1161BD;
+		border-color: #130269;
+	}
+}
+fieldset[disabled] {
+	.botones_parrafos {
+		background-color: #1161BD;
+		border-color: #130269;
+		&:hover {
+			background-color: #1161BD;
+			border-color: #130269;
+		}
+		&:focus {
+			background-color: #1161BD;
+			border-color: #130269;
+		}
+		&:active {
+			background-color: #1161BD;
+			border-color: #130269;
+		}
+	}
+	.botones_parrafos.active {
+		background-color: #1161BD;
+		border-color: #130269;
+	}
+}
+.botones_parrafos.disabled.active {
+	background-color: #1161BD;
+	border-color: #130269;
+}
+.botones_parrafos[disabled].active {
+	background-color: #1161BD;
+	border-color: #130269;
+}
+
+
+.carousel-item {
+padding-right: 10px; 
+}
+
+.whatsapp-link {
+	position: fixed;
+	bottom: 20px;
+	right: 20px;
+	transition: transform 0.2s ease-in-out;
+	&:hover {
+		animation: jump 0.5s infinite alternate;
+	}
+}
+
+@keyframes jump {
+0% {
+    transform: translateY(0);
+}
+50% {
+    transform: translateY(-10px);
+}
+100% {
+    transform: translateY(0);
+}
+}

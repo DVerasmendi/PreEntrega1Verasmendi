@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Contáctanos a través de nuestro formulario para cualquier consulta o oportunidad laboral. Estamos listos para colaborar contigo."
+    />
+    <link rel="stylesheet" href="../css/style_v2.css" />
+    <link rel="icon" type="image/x-icon" href="../static/img/favicon.ico" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+    <!-- Agrega SweetAlert2 JS y tu propio JS -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.18/dist/sweetalert2.all.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.18/dist/sweetalert2.min.css"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://cdn.jsdelivr.net/npm/i18next@21.6.6/dist/umd/i18next.min.js"></script>
+    <title data-i18n="contacto_title">
+      Brillantes Opciones: Cotiza Tus Proyectos con Estilo Bronce, Plata, Oro y
+      Platino
+    </title>
+  </head>
+  <body>
+    <header class="header">
+      <div id="div_titulo_main">
+        <a href="../index.html">
+          <img
+            id="main_logo"
+            src="/static/img/logo3.png"
+            alt="Logo DDB Web Studio"
+          />
+        </a>
+        <a id="btn-en" style="display: none">
+          <img
+            class="img_idioma"
+            src="/static/img/usa.png"
+            alt="idioma_english"
+          />
+        </a>
+        <a id="btn-es" style="display: none">
+          <img
+            class="img_idioma"
+            src="/static/img/esp.png"
+            alt="idioma_espanish"
+          />
+        </a>
+      </div>
+      <div class="menusito-toggle">
+        <div class="menusito-icon">
+          <span class="menusito-line"></span>
+          <span class="menusito-line"></span>
+          <span class="menusito-line"></span>
+        </div>
+        <div class="close-icon"></div>
+      </div>
+      <nav class="navsito">
+        <ul class="navsito__list">
+          <li class="navsito__item">
+            <a class="navsito__link" href="../index.html" data-i18n="home"
+              >Home</a
+            >
+          </li>
+          <li class="navsito__item">
+            <a class="navsito__link" href="./conoceme.html" data-i18n="about"
+              >Conóceme</a
+            >
+          </li>
+          <li class="navsito__item">
+            <a
+              class="navsito__link"
+              href="./servicios.html"
+              data-i18n="services"
+              >Servicios</a
+            >
+          </li>
+          <li class="navsito__item">
+            <a
+              class="navsito__link"
+              href="./portafolio_apps.html"
+              data-i18n="portfolio"
+              >Portafolio</a
+            >
+          </li>
+          <li class="navsito__item">
+            <a class="navsito__link" href="./contacto.html" data-i18n="contact"
+              >Contacto</a
+            >
+          </li>
+        </ul>
+      </nav>
+    </header>
+
+    <div class="contact-container">
+      <div class="contacto-principal">
+        <h2 class="contacto-principal__titulo" data-i18n="contact.title">
+          Brillantes Opciones: Cotiza Tus Proyectos con Estilo
+        </h2>
+        <form class="contacto-formulario">
+          <div class="planes-container">
+            <div class="plan" id="oro">
+              <input
+                type="radio"
+                name="plan"
+                id="planOro"
+                value="Plan Oro|500"
+                style="display: none"
+              />
+              <label for="planOro">
+                <img
+                  src="/static/img/oro.png"
+                  alt="Plan Oro"
+                  style="width: 50px"
+                />
+              </label>
+              <div class="plan-info">
+                <h2 class="titulo_plan">Plan Oro</h2>
+                <ul class="list_plan">
+                  <li>Website dinámica.</li>
+                  <li>Integración de pago.</li>
+                </ul>
+                <div class="price-container">
+                  <p class="plan_cost"><strong>Costo: 500 USD</strong></p>
+                </div>
+              </div>
+            </div>
+
+            <div class="plan" id="plata">
+              <input
+                type="radio"
+                name="plan"
+                id="planPlata"
+                value="Plan Plata|350"
+                style="display: none"
+              />
+              <label for="planPlata">
+                <img
+                  src="/static/img/plata.png"
+                  alt="Plan Plata"
+                  style="width: 50px"
+                />
+              </label>
+              <div class="plan-info">
+                <h2 class="titulo_plan">Plan Plata</h2>
+                <ul class="list_plan">
+                  <li>Website dinámica.</li>
+                  <li>Integración de pago.</li>
+                </ul>
+                <div class="price-container">
+                  <p class="plan_cost"><strong>Costo: 350 USD</strong></p>
+                </div>
+              </div>
+            </div>
+
+            <div class="plan" id="bronce">
+              <input
+                type="radio"
+                name="plan"
+                id="planBronce"
+                value="Plan Bronce|250"
+                style="display: none"
+              />
+              <label for="planBronce">
+                <img
+                  src="/static/img/bronce.png"
+                  alt="Plan Bronce"
+                  style="width: 50px"
+                />
+              </label>
+              <div class="plan-info">
+                <h2 class="titulo_plan">Plan Bronce</h2>
+                <ul class="list_plan">
+                  <li>Website estática.</li>
+                  <li>Consultoria incluida.</li>
+                </ul>
+                <div class="price-container">
+                  <p class="plan_cost"><strong>Costo: 250 USD</strong></p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <input
+            type="text"
+            class="contacto-formulario__input"
+            placeholder="Nombre Completo"
+            data-i18n="contact.placeholderName"
+            id="name_form"
+          />
+          <input
+            type="email"
+            class="contacto-formulario__input"
+            placeholder="Email"
+            data-i18n="contact.placeholderEmail"
+            id="email_form"
+          />
+          <input
+            type="text"
+            class="contacto-formulario__input"
+            placeholder="Asunto"
+            data-i18n="contact.placeholderSubject"
+          />
+          <textarea
+            class="contacto-formulario__input contacto-formulario__textarea"
+            placeholder="Mensaje"
+            data-i18n="contact.placeholderMessage"
+          ></textarea>
+          <input
+            type="text"
+            placeholder="¿De que pais eres?"
+            id="inputPais"
+            class="contacto-formulario__input"
+            value=""
+          />
+          <div id="radioButtons">
+            <div id="leftRadioButtons" class="radio-buttons-group"></div>
+            <div id="rightRadioButtons" class="radio-buttons-group"></div>
+          </div>
+          <select
+            id="selectPais"
+            name="country"
+            class="form-select"
+            style="display: none"
+          >
+            <option value="af">Afghanistan</option>
+            <option value="ax">Åland Islands</option>
+            <option value="al">Albania</option>
+            <option value="dz">Algeria</option>
+            <option value="as">American Samoa</option>
+            <option value="ad">Andorra</option>
+            <option value="ao">Angola</option>
+            <option value="ai">Anguilla</option>
+            <option value="aq">Antarctica</option>
+            <option value="ag">Antigua and Barbuda</option>
+            <option value="ar">Argentina</option>
+            <option value="am">Armenia</option>
+            <option value="aw">Aruba</option>
+            <option value="au">Australia</option>
+            <option value="at">Austria</option>
+            <option value="az">Azerbaijan</option>
+            <option value="bs">Bahamas</option>
+            <option value="bh">Bahrain</option>
+            <option value="bd">Bangladesh</option>
+            <option value="bb">Barbados</option>
+            <option value="by">Belarus</option>
+            <option value="be">Belgium</option>
+            <option value="bz">Belize</option>
+            <option value="bj">Benin</option>
+            <option value="bm">Bermuda</option>
+            <option value="bt">Bhutan</option>
+            <option value="bo">Bolivia</option>
+            <option value="ba">Bosnia and Herzegovina</option>
+            <option value="bw">Botswana</option>
+            <option value="bv">Bouvet Island</option>
+            <option value="br">Brazil</option>
+            <option value="io">British Indian Ocean Territory</option>
+            <option value="bn">Brunei Darussalam</option>
+            <option value="bg">Bulgaria</option>
+            <option value="bf">Burkina Faso</option>
+            <option value="bi">Burundi</option>
+            <option value="kh">Cambodia</option>
+            <option value="cm">Cameroon</option>
+            <option value="ca">Canada</option>
+            <option value="cv">Cape Verde</option>
+            <option value="ky">Cayman Islands</option>
+            <option value="cf">Central African Republic</option>
+            <option value="td">Chad</option>
+            <option value="cl">Chile</option>
+            <option value="cn">China</option>
+            <option value="cx">Christmas Island</option>
+            <option value="cc">Cocos (Keeling) Islands</option>
+            <option value="co">Colombia</option>
+            <option value="km">Comoros</option>
+            <option value="cg">Congo</option>
+            <option value="cd">Congo, The Democratic Republic of The</option>
+            <option value="ck">Cook Islands</option>
+            <option value="cr">Costa Rica</option>
+            <option value="ci">Cote D'ivoire</option>
+            <option value="hr">Croatia</option>
+            <option value="cu">Cuba</option>
+            <option value="cy">Cyprus</option>
+            <option value="cz">Czech Republic</option>
+            <option value="dk">Denmark</option>
+            <option value="dj">Djibouti</option>
+            <option value="dm">Dominica</option>
+            <option value="do">Dominican Republic</option>
+            <option value="ec">Ecuador</option>
+            <option value="eg">Egypt</option>
+            <option value="sv">El Salvador</option>
+            <option value="gq">Equatorial Guinea</option>
+            <option value="er">Eritrea</option>
+            <option value="ee">Estonia</option>
+            <option value="et">Ethiopia</option>
+            <option value="fk">Falkland Islands (Malvinas)</option>
+            <option value="fo">Faroe Islands</option>
+            <option value="fj">Fiji</option>
+            <option value="fi">Finland</option>
+            <option value="fr">France</option>
+            <option value="gf">French Guiana</option>
+            <option value="pf">French Polynesia</option>
+            <option value="tf">French Southern Territories</option>
+            <option value="ga">Gabon</option>
+            <option value="gm">Gambia</option>
+            <option value="ge">Georgia</option>
+            <option value="de">Germany</option>
+            <option value="gh">Ghana</option>
+            <option value="gi">Gibraltar</option>
+            <option value="gr">Greece</option>
+            <option value="gl">Greenland</option>
+            <option value="gd">Grenada</option>
+            <option value="gp">Guadeloupe</option>
+            <option value="gu">Guam</option>
+            <option value="gt">Guatemala</option>
+            <option value="gg">Guernsey</option>
+            <option value="gn">Guinea</option>
+            <option value="gw">Guinea-bissau</option>
+            <option value="gy">Guyana</option>
+            <option value="ht">Haiti</option>
+            <option value="hm">Heard Island and Mcdonald Islands</option>
+            <option value="va">Holy See (Vatican City State)</option>
+            <option value="hn">Honduras</option>
+            <option value="hk">Hong Kong</option>
+            <option value="hu">Hungary</option>
+            <option value="is">Iceland</option>
+            <option value="in">India</option>
+            <option value="id">Indonesia</option>
+            <option value="ir">Iran, Islamic Republic of</option>
+            <option value="iq">Iraq</option>
+            <option value="ie">Ireland</option>
+            <option value="im">Isle of Man</option>
+            <option value="il">Israel</option>
+            <option value="it">Italy</option>
+            <option value="jm">Jamaica</option>
+            <option value="jp">Japan</option>
+            <option value="je">Jersey</option>
+            <option value="jo">Jordan</option>
+            <option value="kz">Kazakhstan</option>
+            <option value="ke">Kenya</option>
+            <option value="ki">Kiribati</option>
+            <option value="kp">Korea, Democratic People's Republic of</option>
+            <option value="kr">Korea, Republic of</option>
+            <option value="kw">Kuwait</option>
+            <option value="kg">Kyrgyzstan</option>
+            <option value="la">Lao People's Democratic Republic</option>
+            <option value="lv">Latvia</option>
+            <option value="lb">Lebanon</option>
+            <option value="ls">Lesotho</option>
+            <option value="lr">Liberia</option>
+            <option value="ly">Libyan Arab Jamahiriya</option>
+            <option value="li">Liechtenstein</option>
+            <option value="lt">Lithuania</option>
+            <option value="lu">Luxembourg</option>
+            <option value="mo">Macao</option>
+            <option value="mk">
+              Macedonia, The Former Yugoslav Republic of
+            </option>
+            <option value="mg">Madagascar</option>
+            <option value="mw">Malawi</option>
+            <option value="my">Malaysia</option>
+            <option value="mv">Maldives</option>
+            <option value="ml">Mali</option>
+            <option value="mt">Malta</option>
+            <option value="mh">Marshall Islands</option>
+            <option value="mq">Martinique</option>
+            <option value="mr">Mauritania</option>
+            <option value="mu">Mauritius</option>
+            <option value="yt">Mayotte</option>
+            <option value="mx">Mexico</option>
+            <option value="fm">Micronesia, Federated States of</option>
+            <option value="md">Moldova, Republic of</option>
+            <option value="mc">Monaco</option>
+            <option value="mn">Mongolia</option>
+            <option value="me">Montenegro</option>
+            <option value="ms">Montserrat</option>
+            <option value="ma">Morocco</option>
+            <option value="mz">Mozambique</option>
+            <option value="mm">Myanmar</option>
+            <option value="na">Namibia</option>
+            <option value="nr">Nauru</option>
+            <option value="np">Nepal</option>
+            <option value="nl">Netherlands</option>
+            <option value="an">Netherlands Antilles</option>
+            <option value="nc">New Caledonia</option>
+            <option value="nz">New Zealand</option>
+            <option value="ni">Nicaragua</option>
+            <option value="ne">Niger</option>
+            <option value="ng">Nigeria</option>
+            <option value="nu">Niue</option>
+            <option value="nf">Norfolk Island</option>
+            <option value="mp">Northern Mariana Islands</option>
+            <option value="no">Norway</option>
+            <option value="om">Oman</option>
+            <option value="pk">Pakistan</option>
+            <option value="pw">Palau</option>
+            <option value="ps">Palestinian Territory, Occupied</option>
+            <option value="pa">Panama</option>
+            <option value="pg">Papua New Guinea</option>
+            <option value="py">Paraguay</option>
+            <option value="pe">Peru</option>
+            <option value="ph">Philippines</option>
+            <option value="pn">Pitcairn</option>
+            <option value="pl">Poland</option>
+            <option value="pt">Portugal</option>
+            <option value="pr">Puerto Rico</option>
+            <option value="qa">Qatar</option>
+            <option value="re">Reunion</option>
+            <option value="ro">Romania</option>
+            <option value="ru">Russian Federation</option>
+            <option value="rw">Rwanda</option>
+            <option value="sh">Saint Helena</option>
+            <option value="kn">Saint Kitts and Nevis</option>
+            <option value="lc">Saint Lucia</option>
+            <option value="pm">Saint Pierre and Miquelon</option>
+            <option value="vc">Saint Vincent and The Grenadines</option>
+            <option value="ws">Samoa</option>
+            <option value="sm">San Marino</option>
+            <option value="st">Sao Tome and Principe</option>
+            <option value="sa">Saudi Arabia</option>
+            <option value="sn">Senegal</option>
+            <option value="rs">Serbia</option>
+            <option value="sc">Seychelles</option>
+            <option value="sl">Sierra Leone</option>
+            <option value="sg">Singapore</option>
+            <option value="sk">Slovakia</option>
+            <option value="si">Slovenia</option>
+            <option value="sb">Solomon Islands</option>
+            <option value="so">Somalia</option>
+            <option value="za">South Africa</option>
+            <option value="gs">
+              South Georgia and The South Sandwich Islands
+            </option>
+            <option value="es">Spain</option>
+            <option value="lk">Sri Lanka</option>
+            <option value="sd">Sudan</option>
+            <option value="sr">Suriname</option>
+            <option value="sj">Svalbard and Jan Mayen</option>
+            <option value="sz">Swaziland</option>
+            <option value="se">Sweden</option>
+            <option value="ch">Switzerland</option>
+            <option value="sy">Syrian Arab Republic</option>
+            <option value="tw">Taiwan, Province of China</option>
+            <option value="tj">Tajikistan</option>
+            <option value="tz">Tanzania, United Republic of</option>
+            <option value="th">Thailand</option>
+            <option value="tl">Timor-leste</option>
+            <option value="tg">Togo</option>
+            <option value="tk">Tokelau</option>
+            <option value="to">Tonga</option>
+            <option value="tt">Trinidad and Tobago</option>
+            <option value="tn">Tunisia</option>
+            <option value="tr">Turkey</option>
+            <option value="tm">Turkmenistan</option>
+            <option value="tc">Turks and Caicos Islands</option>
+            <option value="tv">Tuvalu</option>
+            <option value="ug">Uganda</option>
+            <option value="ua">Ukraine</option>
+            <option value="ae">United Arab Emirates</option>
+            <option value="gb">United Kingdom</option>
+            <option value="us">United States</option>
+            <option value="um">United States Minor Outlying Islands</option>
+            <option value="uy">Uruguay</option>
+            <option value="uz">Uzbekistan</option>
+            <option value="vu">Vanuatu</option>
+            <option value="ve">Venezuela</option>
+            <option value="vn">Viet Nam</option>
+            <option value="vg">Virgin Islands, British</option>
+            <option value="vi">Virgin Islands, U.S.</option>
+            <option value="wf">Wallis and Futuna</option>
+            <option value="eh">Western Sahara</option>
+            <option value="ye">Yemen</option>
+            <option value="zm">Zambia</option>
+            <option value="zw">Zimbabwe</option>
+          </select>
+          <div class="plantilla" style="display: block">
+            <div id="app" class="col-12">
+              <hr />
+              <div class="row fact-info mt-12">
+                <div class="col-12">
+                  <img
+                    src="/static/img/logo_factura.png"
+                    style="width: 230px; border-radius: 10px"
+                  />
+                  <p class="titulo_boleta">
+                    <strong>N° de cotización: 101</strong>
+                  </p>
+                </div>
+              </div>
+              <div class="row fact-info mt-12">
+                <p class="titulo_boleta">
+                  <strong>Cotizar a: </strong><span id="nombre"></span>
+                </p>
+              </div>
+              <div class="row fact-info mt-12">
+                <p class="titulo_boleta">
+                  <strong>Enviar a: </strong><span id="email"></span>
+                </p>
+              </div>
+              <div class="row fact-info mt-12">
+                <p class="titulo_boleta">
+                  <strong>Pais: </strong><span id="pais_span"></span>
+                </p>
+              </div>
+              <div class="row fact-info mt-12">
+                <p class="titulo_boleta">
+                  <strong>Fecha: </strong><span id="fecha_actual"></span>
+                </p>
+              </div>
+              <div class="row fact-info mt-12">
+                <p class="titulo_boleta">
+                  <strong>Válido hasta: </strong
+                  ><span id="fecha_valido_hasta"></span>
+                </p>
+              </div>
+              <div class="row my-5">
+                <table class="table table-borderless factura titulo_boleta">
+                  <thead>
+                    <tr>
+                      <th>Cant.</th>
+                      <th>Plan</th>
+                      <th>Precio Unitario</th>
+                      <th>IVA (19%)</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>1</td>
+                      <td>
+                        <p><span id="plan"></span></p>
+                      </td>
+                      <td>
+                        <p>
+                          <span
+                            id="costo"
+                            class="data_number_cotizacion"
+                          ></span>
+                          USD
+                        </p>
+                      </td>
+                      <td>
+                        <p>
+                          <span
+                            id="costo_iva"
+                            class="data_number_cotizacion"
+                          ></span>
+                          USD
+                        </p>
+                      </td>
+                    </tr>
+                    <tr>
+                      <ul id="detallePlan"></ul>
+                    </tr>
+                  </tbody>
+                  <tfoot>
+                    <tr>
+                      <th></th>
+                      <th></th>
+                      <th>Total Cotización</th>
+                      <th>
+                        <p>
+                          <span
+                            id="costo_total_span"
+                            class="data_number_cotizacion"
+                          ></span>
+                          USD
+                        </p>
+                      </th>
+                    </tr>
+                  </tfoot>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <button
+            type="submit"
+            class="contacto-formulario__boton"
+            data-i18n="contact.buttonSend"
+          >
+            Contactar
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <!-- UNETE a MI LISTA-->
+    <div class="main-containers">
+      <div class="main-containers__left-container">
+        <h2 class="main-containers__left-title" data-i18n="ddb_studio">
+          DDB Web Studio
+        </h2>
+        <p class="main-containers__left-paragraph" data-i18n="contact_me">
+          Si deseas concertar una entrevista o contactarme para oportunidades
+          laborales, estaré encantado de recibir tu mensaje.
+        </p>
+      </div>
+      <div class="main-containers__right-container">
+        <h2
+          class="main-containers__right-title"
+          data-i18n="contact_opportunities"
+        >
+          ¡Contáctame para oportunidades laborales!
+        </h2>
+        <form class="main-containers__right-form" method="POST">
+          <input
+            type="email"
+            class="main-containers__right-input"
+            placeholder="Email Address"
+          />
+          <input
+            type="name"
+            class="main-containers__right-input"
+            placeholder="Full name"
+          />
+          <input
+            type="text"
+            class="main-containers__right-input formulario__textarea_chiquis"
+            placeholder="Mensaje"
+          />
+          <button
+            type="submit"
+            class="main-containers__right-button"
+            disabled
+            data-i18n="send"
+          >
+            Enviar
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <footer class="footer">
+      <div class="footer__container">
+        <div class="footer__social-icons">
+          <a
+            class="footer__social-icon"
+            href="https://www.instagram.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <img src="/static/img/ig.png" alt="Instagram" />
+          </a>
+          <a
+            class="footer__social-icon"
+            href="https://es-la.facebook.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <img src="/static/img/facebook.png" alt="Facebook" />
+          </a>
+          <a
+            class="footer__social-icon"
+            href="https://cl.linkedin.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <img src="/static/img/linkedin.png" alt="LinkedIn" />
+          </a>
+          <a class="footer__social-icon" href="mailto:correo@example.com">
+            <img src="/static/img/email.png" alt="Correo Electrónico" />
+          </a>
+        </div>
+        <p class="footer__text" data-i18n="footer_text">
+          Santiago de Chile, © 2023 Todos los derechos reservados. DDB Web
+          Studio. Diseñado por DDB Web Studio
+        </p>
+      </div>
+    </footer>
+    <a
+      href="https://api.whatsapp.com/send?phone=56947302836&text=Hola!%20Estoy%20interesado%20en%20tus%20productos,%20mi%20nombre%20es:"
+      target="_blank"
+      class="whatsapp-link"
+    >
+      <img
+        src="/static/img/whatsapp.png"
+        alt="WhatsApp"
+        class="whatsapp-logo"
+      />
+    </a>
+    <script src="/js/style.js"></script>
+  </body>
+</html>
