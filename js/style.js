@@ -183,19 +183,19 @@ fecha_actual.textContent = fechaFormateada;
 fecha_valido_hasta.textContent = fechaFormateada_valida_hasta;
 
 // PARTE BANDERAS
-var input = document.getElementById("inputPais");
-var select = document.getElementById("selectPais");
-var leftRadioButtonsContainer = document.getElementById("leftRadioButtons");
-var rightRadioButtonsContainer = document.getElementById("rightRadioButtons");
-var form_country = document.getElementById("form_country");
+const input = document.getElementById("inputPais");
+const select = document.getElementById("selectPais");
+const leftRadioButtonsContainer = document.getElementById("leftRadioButtons");
+const rightRadioButtonsContainer = document.getElementById("rightRadioButtons");
+const form_country = document.getElementById("form_country");
 
-var radioButtons_div = document.getElementById("radioButtons");
+const radioButtons_div = document.getElementById("radioButtons");
 radioButtons_div.style.display = "block";
 
 input.addEventListener("input", function () {
-  var valorInput = input.value.toLowerCase();
-  radioButtons_div.style.display = "block";
-  var opcionesFiltradas = Array.from(select.options).filter(function (opcion) {
+const valorInput = input.value.toLowerCase();
+radioButtons_div.style.display = "block";
+const opcionesFiltradas = Array.from(select.options).filter(function (opcion) {
     return opcion.value.toLowerCase().includes(valorInput);
   });
 
@@ -249,15 +249,15 @@ input.addEventListener("input", function () {
   
     // Asignar evento de clic a los labels para seleccionar el radio button correspondiente
   // Asignar evento de clic al div que contiene la imagen y el label
-  var allDivs = document.querySelectorAll(".form-check-inline");
+  const allDivs = document.querySelectorAll(".form-check-inline");
   allDivs.forEach(function(div) {
     div.addEventListener("click", function() {
-      var radioButton = this.querySelector("input[type='radio']");
+        const radioButton = this.querySelector("input[type='radio']");
       if (radioButton) {
         radioButton.checked = true; // Seleccionar el radiobutton al hacer clic en el div
         select.value = radioButton.value; // Asignar el valor del radiobutton al select
-        var selectedOption = select.options[select.selectedIndex];
-        var selectedText = selectedOption.innerText;
+        const selectedOption = select.options[select.selectedIndex];
+        const selectedText = selectedOption.innerText;
         input.value = selectedText;
         pais_span.textContent = selectedText;
         radioButtons_div.style.display = "none";
