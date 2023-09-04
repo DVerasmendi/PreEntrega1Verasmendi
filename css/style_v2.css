@@ -1001,6 +1001,29 @@ fieldset[disabled] .botones_parrafos.active {
   .form-check-label {
     margin-left: 5px; /* Espacio entre el icono y el texto */
   }
+  .cotizacion-table {
+    border-collapse: collapse;
+    width: 57%;
+  }
+  .cotizacion-table th,
+  .cotizacion-table td {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+  }
+  .checkbox-label {
+    display: block;
+    margin-bottom: 10px;
+    position: relative;
+  }
+  .checkbox-label i {
+    position: absolute;
+    left: -25px; /* Ajusta el espacio entre el símbolo y el texto */
+    top: 2px; /* Alinea verticalmente el símbolo con el texto */
+  }
+  .checkbox {
+    margin-top: 5px;
+  }
 }
 
 /*# sourceMappingURL=style_v2.css.map */

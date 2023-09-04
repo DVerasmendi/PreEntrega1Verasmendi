@@ -22,6 +22,10 @@
       integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM"
       crossorigin="anonymous"
     />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
@@ -101,7 +105,7 @@
                 type="radio"
                 name="plan"
                 id="planOro"
-                value="Plan Oro|500"
+                value="Plan Oro|420"
                 style="display: none"
               />
               <label for="planOro">
@@ -114,7 +118,7 @@
               <div class="plan-info">
                 <h2 class="titulo_plan">Plan Oro</h2>
                 <div class="price-container">
-                  <p class="plan_cost"><strong>500 USD</strong></p>
+                  <p class="plan_cost"><strong>420 USD</strong></p>
                 </div>
               </div>
             </div>
@@ -124,7 +128,7 @@
                 type="radio"
                 name="plan"
                 id="planPlata"
-                value="Plan Plata|350"
+                value="Plan Plata|294"
                 style="display: none"
               />
               <label for="planPlata">
@@ -137,7 +141,7 @@
               <div class="plan-info">
                 <h2 class="titulo_plan">Plan Plata</h2>
                 <div class="price-container">
-                  <p class="plan_cost"><strong>350 USD</strong></p>
+                  <p class="plan_cost"><strong>294 USD</strong></p>
                 </div>
               </div>
             </div>
@@ -147,7 +151,7 @@
                 type="radio"
                 name="plan"
                 id="planBronce"
-                value="Plan Bronce|250"
+                value="Plan Bronce|252"
                 style="display: none"
               />
               <label for="planBronce">
@@ -160,7 +164,7 @@
               <div class="plan-info">
                 <h2 class="titulo_plan">Plan Bronce</h2>
                 <div class="price-container">
-                  <p class="plan_cost"><strong>250 USD</strong></p>
+                  <p class="plan_cost"><strong>252 USD</strong></p>
                 </div>
               </div>
             </div>
@@ -457,6 +461,76 @@
             <option value="zm">Zambia</option>
             <option value="zw">Zimbabwe</option>
           </select>
+
+          <table class="cotizacion-table">
+            <tr>
+              <th style="align-items: center; text-align: center">
+                Items extras
+              </th>
+            </tr>
+            <tr>
+              <td>
+                <label class="checkbox-label">
+                  <input
+                    type="checkbox"
+                    id="asesoria"
+                    value="Asesoria por 1 año"
+                    data-costo="100"
+                  />
+                  Asesoría por 1 año
+                </label>
+                <label class="checkbox-label">
+                  <input
+                    type="checkbox"
+                    id="integraciones"
+                    value="Multiples integraciones de pago"
+                  />
+                  Múltiples integraciones de pago
+                </label>
+                <label class="checkbox-label">
+                  <input
+                    type="checkbox"
+                    id="elementos"
+                    value="Implementación de DB"
+                    data-costo="100"
+                  />
+                  Implementación de DB
+                </label>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <label class="checkbox-label">
+                  <input
+                    type="checkbox"
+                    id="funciones"
+                    value="Funciones como enviar emails y whatsapps"
+                    data-costo="100"
+                  />
+                  Funciones como enviar emails y WhatsApps
+                </label>
+                <label class="checkbox-label">
+                  <input
+                    type="checkbox"
+                    id="geolocalizacion"
+                    value="Implementar Geolocalización"
+                    data-costo="100"
+                  />
+                  Implementar Geolocalización
+                </label>
+                <label class="checkbox-label">
+                  <input
+                    type="checkbox"
+                    id="mejoras"
+                    value="Elementos personalizados"
+                    data-costo="100"
+                  />
+                  Elementos personalizados
+                </label>
+              </td>
+            </tr>
+          </table>
+
           <div class="plantilla" style="display: none">
             <div id="app" class="col-12">
               <hr />
@@ -499,13 +573,17 @@
                 </p>
               </div>
               <div class="row my-5">
-                <table class="table table-dark factura titulo_boleta">
+                <table
+                  id="cotizacion_table"
+                  class="table table-dark factura titulo_boleta"
+                >
                   <thead>
                     <tr>
                       <th class="titulo_tabla_int">Cantidad</th>
                       <th class="titulo_tabla_int">Producto</th>
-                      <th class="titulo_tabla_int">Precio Unitario</th>
+                      <th class="titulo_tabla_int">P/U</th>
                       <th class="titulo_tabla_int">IVA (19%)</th>
+                      <th class="titulo_tabla_int">TOTAL</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -532,6 +610,15 @@
                           USD
                         </p>
                       </td>
+                      <td>
+                        <p>
+                          <span
+                            id="plan_total_con_iva"
+                            class="data_number_cotizacion"
+                          ></span>
+                          USD
+                        </p>
+                      </td>
                     </tr>
                     <tr>
                       <ul id="detallePlan"></ul>
@@ -539,6 +626,7 @@
                   </tbody>
                   <tfoot>
                     <tr>
+                      <th></th>
                       <th></th>
                       <th></th>
                       <th class="titulo_tabla_int">Total Cotización</th>
@@ -564,7 +652,7 @@
             class="contacto-formulario__boton"
             data-i18n="contact.buttonSend"
           >
-            Contactar
+            Cotizar
           </button>
         </form>
       </div>
