@@ -129,8 +129,6 @@ plans.forEach((plan) => {
     const radioInput = plan.querySelector("input[type='radio']");
     planSpan.textContent = radioInput.value.split('|')[0];
     const costo=parseFloat(radioInput.value.split('|')[1]);
-    const planInfo = plan.querySelector(".plan-info");
-
 
 
     iva= calcular_iva(costo);
@@ -419,34 +417,124 @@ else{
       });
 }
   });
-// //Class
-// class Computadora{
-//     constructor(tipo, marca, precio){
-//         this.tipo=tipo;
-//         this.marca=marca;
-//         this.precio=precio;
-//         this.vendido=false;
-//     }
-//     //metodos
-//     venderCompu(){
-//         this.vendido=true;
-//     }
-//     aumentarPrecio(porcentaje){
-//         this.precio=this.precio * porcentaje;
-//     }
-// }
 
-// const compu1=new Computadora('Desktop', 'Generica', 1000);
-// const compu2=new Computadora('Notebook', 'Apple', 2000);
-// const compu3=new Computadora('Desktop', 'HP', 1500);
 
-// console.log(compu2);
 
-// compu3.venderCompu();
+ /////////  STORAGE /////////////
+// Define la constante nuevaCotizacion con valores iniciales
+const nuevaCotizacion = {
+  nombre: '',
+  email: '',
+  plan: '',
+};
 
-// console.log(compu3);
+// Función para actualizar nuevaCotizacion
+function actualizarCotizacion() {
+  // Obtén los valores actuales del nombre, email y plan
+  const nombreInput = document.getElementById('name_form').value;
+  const emailInput = document.getElementById('email_form').value;
+  const planSeleccionado = document.querySelector('input[type="radio"][name="plan"]:checked');
 
-// let aumento = parseInt(prompt('Ingresa el aumento que quieres aplicar'));
-// compu1.aumentarPrecio(1+(aumento/100));
+  // Verifica si se ha seleccionado un plan
+  if (planSeleccionado) {
+    // Divide el valor del plan seleccionado para obtener el nombre
+    const [planName] = planSeleccionado.value.split('|');
+    // Actualiza la propiedad "plan" en nuevaCotizacion
+    nuevaCotizacion.plan = planName;
+  }
 
-// console.log('Precio actualizado: U$'+compu1.precio);
+  // Actualiza las propiedades de nuevaCotizacion
+  nuevaCotizacion.nombre = nombreInput;
+  nuevaCotizacion.email = emailInput;
+
+  // Imprime nuevaCotizacion en la consola
+  console.log('nuevaCotizacion:', nuevaCotizacion);
+
+  // Llama a la función para guardar en el localStorage
+  guardarCotizacionEnLocalStorage();
+}
+
+// Función para observar cambios en el DOM
+function observarCambiosDOM() {
+  const nombreInput = document.querySelector('.main-containers__right-input[placeholder="Full name"]');
+  const emailInput = document.querySelector('.main-containers__right-input[placeholder="Email Address"]');
+  
+  // Configura el observador para los cambios en el contenido de los elementos input
+  const observer = new MutationObserver(() => {
+    actualizarCotizacion();
+  });
+
+  // Observa los input de nombre y email
+  observer.observe(nombreInput, { characterData: true, subtree: true });
+  observer.observe(emailInput, { characterData: true, subtree: true });
+}
+
+// Llama a la función observarCambiosDOM para comenzar a observar cambios en el DOM
+observarCambiosDOM();
+
+// Función para guardar nuevaCotizacion en el localStorage
+function guardarCotizacionEnLocalStorage() {
+  // Convierte la cotización a formato JSON y guárdala en el localStorage
+  localStorage.setItem('cotizacion', JSON.stringify(nuevaCotizacion));
+}
+
+// También puedes cargar los datos del usuario al cargar la página
+window.addEventListener('load', function() {
+  const cotizacionGuardada = localStorage.getItem('cotizacion');
+  if (cotizacionGuardada) {
+    const cotizacionParseada = JSON.parse(cotizacionGuardada);
+    
+    // Rellena los campos del formulario con los datos del usuario
+    document.querySelector('.main-containers__right-input[placeholder="Full name"]').value = cotizacionParseada.nombre;
+    document.querySelector('.main-containers__right-input[placeholder="Email Address"]').value = cotizacionParseada.email;
+      // Verifica si se seleccionó un plan anteriormente y marca el radio correspondiente
+  radio_correspondiente= cotizacionParseada.plan;
+  console.log(radio_correspondiente);
+
+  // Obtén todos los elementos de radio con el nombre "plan"
+const radioButtons = document.querySelectorAll('input[type="radio"][name="plan"]');
+
+// Recorre los radio buttons y busca una coincidencia en el valor
+radioButtons.forEach(function(radioButton) {
+  const [planName] = radioButton.value.split('|'); // Obtiene el nombre del plan del valor
+
+  // Compara el plan guardado con el plan del radio button
+  if (radio_correspondiente === planName) {
+    console.log('COINCIDE');
+    radioButton.checked = true; // Marca el radio button si hay coincidencia
+  }
+});
+
+
+  }
+
+
+  const selectedPlanName = localStorage.getItem('selectedPlanName');
+  console.log(selectedPlanName);
+  if (selectedPlanName) {
+    const radioButtons = document.querySelectorAll('input[type="radio"][name="plan"]');
+    radioButtons.forEach(function(radioButton) {
+      const [planName] = radioButton.value.split('|');
+      alert(planName);
+      if (selectedPlanName === planName) {
+        alert('INGRESA');
+        radioButton.checked = true;
+        radioButton.classList.add('plan', 'selected');
+      }
+    });
+  }
+});
+
+// Obtén todos los elementos de radio con el nombre "plan"
+const radioButtons = document.querySelectorAll('input[type="radio"][name="plan"]');
+
+// Agrega un evento change a cada radio
+radioButtons.forEach(function(radioButton) {
+  radioButton.addEventListener('change', function() {
+    // Llama a la función para actualizar la cotización cuando se cambia la selección del plan
+    actualizarCotizacion();
+  });
+});
+
+// Llama a la función actualizarCotizacion inicialmente para capturar los valores iniciales
+actualizarCotizacion();
