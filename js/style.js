@@ -107,15 +107,12 @@ function calcular_iva(costo) {
 function getRandomInt(min, max) {
 return Math.floor(Math.random() * (max - min + 1)) + min;
 }
-
-
   
 const form = document.querySelector(".contacto-formulario");
 const plantilla = document.querySelector(".plantilla");
 const nombreSpan = document.getElementById("nombre");
 const emailSpan = document.getElementById("email");
 const planSpan = document.getElementById("plan");
-/*const detallePlanList = document.getElementById("detallePlan");*/
 const costoSpan = document.getElementById("costo");
 const nombreInput = document.getElementById("name_form");
 const emailInput = document.getElementById("email_form");
@@ -133,13 +130,7 @@ plans.forEach((plan) => {
     planSpan.textContent = radioInput.value.split('|')[0];
     const costo=parseFloat(radioInput.value.split('|')[1]);
     const planInfo = plan.querySelector(".plan-info");
-    /*const detalles = planInfo.querySelectorAll(".list_plan li");
-    detallePlanList.innerHTML = "";*/
-    /*detalles.forEach((detalle) => {
-      const li = document.createElement("li");
-      li.textContent = detalle.textContent;
-      detallePlanList.appendChild(li);
-    });*/
+
 
 
     iva= calcular_iva(costo);
