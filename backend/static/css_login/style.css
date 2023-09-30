@@ -1,0 +1,51 @@
+body {
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+}
+
+body {
+    background: rgb(88,0,255);
+    background: linear-gradient(90deg, rgba(88,0,255,0.4290966386554622) 0%, rgba(114,255,255,0.7876400560224089) 35%, rgba(0,215,255,0.7372198879551821) 100%);
+    }
+    
+.card-login {
+    margin-top: 130px;
+    padding: 18px;
+    max-width: 30rem;
+}
+
+.letras_idioma{
+    color:white;
+    font-size: large;
+}
+
+.btn-primary, .btn-primary:hover, .btn-primary:active, .btn-primary:visited {
+    background-color: #FFDA4D !important;
+    color:black !important;
+    border-color: rgb(160, 157, 157) !important;
+    border-radius: 10px !important;
+}
+
+.not-active { 
+    pointer-events: none; 
+    cursor: default; 
+}
+
+
+
+
+.my-swal-container {
+    width: 100%; /* Ajusta el ancho del contenedor según tus necesidades */
+  }
+  
+  .my-swal-popup {
+    width: 100%; /* Ajusta el ancho del popup según tus necesidades */
+    font-size:60px
+  }
+  
+  .my-swal-content {
+    font-size: 500px; /* Ajusta el tamaño de fuente según tus necesidades */
+  }
+  

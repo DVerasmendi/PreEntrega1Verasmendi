@@ -1,0 +1,1079 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="cache-control" content="max-age=0" />
+  <meta http-equiv="cache-control" content="no-cache" />
+  <meta http-equiv="expires" content="0" />
+  <meta http-equiv="expires" content="Tue, 01 Jan 1980 1:00:00 GMT" />
+  <meta http-equiv="pragma" content="no-cache" />
+  <link rel="stylesheet" href="static/css_login/style.css">
+  <link href="static/css_login/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+  <script src="static/js_login/bootstrap.min.js"></script>
+  <script src="static/js_login/jquery.min.js"></script>
+
+  <script src="static/js_login/sweetalert.js"></script>
+
+  <script src="https://sdk.mercadopago.com/js/v2"></script>
+  <script src="static/js_login/font.js"></script>
+
+  <link href="static/css_login/google_css.css" rel="stylesheet" id="bootstrap-css">
+  <link rel="stylesheet" href="static/css_login/estilos_3.css">
+
+  <title>Pagar cotización</title>
+</head>
+
+<body>
+  <div class="container">
+    <div class="mx-auto text-center">
+      <div>
+        <span class="logo_title mt-12"> <img src="static/css_login/logo_factura.png" width="30%;" style="border-radius: 20px; margin-top: 1rem; margin-bottom: 1rem "></span>
+      </div>
+      <!-- DIV CARGANDO" -->
+      <div id="div_cargando" class="card-body" style="display:none;">
+        <br />
+        <br />
+        <img src="static/css_login/loading2.gif" width="100px;" alt="">
+      </div>
+      <div id="div_principal_2" class="form-items"
+        style="border: 5px rgb(245, 243, 243) solid; border-radius: 20px; padding: 5%; margin-bottom: 10%;">
+        <div id="div_form" class="card-body">
+          <style>
+            #form-checkout {
+              color: #f8f6f6;
+              display: flex;
+              flex-direction: column;
+
+            }
+
+            .container2 {
+              background-color: #f8f6f6;
+              height: 40px;
+              display: inline-block;
+              border: 1px solid rgb(118, 118, 118);
+              border-radius: 2px;
+              padding: 1px 2px;
+            }
+
+            .container3 {
+              background-color: #f8f6f6;
+              height: 40px;
+              width: 100%;
+              display: inline-block;
+              border: 1px solid rgb(118, 118, 118);
+              border-radius: 2px;
+
+            }
+          </style>
+          <div id="div_code_type" class="col-12" style="margin-right:20px;">
+            <input id="costo_total_proyecto" value="{{costo_total_proyecto}}" style="display:none;">
+            <form id="form-checkout">
+              <div class="mb-3">
+                <p id="p_plan_seleccionado" style="background-color: #e3a739;border-radius: 10px; text-align: center; color: #f8f6f6; font-size: large; display: none; font-size: x-large;">
+                  <span id="selected_plan"><strong>{{costo_total_proyecto}} USD</strong></span>
+                </p>
+                <p style="text-align: center; color: #000000; font-size: large"><b>Por favor llena los datos</b></p>
+              </div>
+              <div class="contenedor">
+                <!-- Tarjeta -->
+                <section class="tarjeta" id="tarjeta">
+                  <div class="delantera">
+                    <div class="logo-marca" id="logo-marca">
+                      <!-- <img src="img/logos/visa.png" alt=""> -->
+                    </div>
+                    <img src="static/img/chip-tarjeta.png" class="chip" alt="">
+                    <div class="datos">
+                      <div class="grupo" id="numero">
+                        <p class="label">Card number</p>
+                        <p class="numero">#### #### #### ####</p>
+                      </div>
+                      <div class="flexbox">
+                        <div class="grupo" id="nombre">
+                          <p class="label">Cardholder</p>
+                          <p class="nombre">Panchita Gutierrez</p>
+                        </div>
+
+                        <div class="grupo" id="expiracion">
+                          <p class="label">Expiration date</p>
+                          <p class="expiracion"><span class="mes_ano">MM / YY</span> </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="trasera">
+                    <div class="barra-magnetica"></div>
+                    <div class="datos">
+                      <div class="grupo" id="firma">
+                        <p class="label">Signature</p>
+                        <div class="firma">
+                          <p></p>
+                        </div>
+                      </div>
+                      <div class="grupo" id="ccv">
+                        <p class="label">CCV</p>
+                        <p class="ccv"></p>
+                      </div>
+                    </div>
+                    <p class="leyenda">This transaction is safe, if you have any problem, contact us</p>
+                    <a href="#" class="link-banco">www.google.cl</a>
+                  </div>
+                </section>
+              </div>
+              <!-- Contenedor Boton Abrir Formulario -->
+              <div class="contenedor-btn">
+                <button type="button" class="btn-abrir-formulario" id="btn-abrir-formulario">
+                  <i class="fas fa-plus"></i>
+                </button>
+              </div>
+
+
+              <div id="div_form_principal" class="div_form_principal" style="display: none;">
+                <div class="cl-6">
+                  <div id="form-checkout__cardNumber" class="container container2" style="border-radius: 5px;"></div>
+                </div>
+                <div class="container" style="padding-bottom: 6px;">
+                  <div class="row">
+                    <div class="col">
+                      <div id="form-checkout__expirationDate" class="container container3"
+                        style="border-radius: 5px; margin-top: 7px; margin-bottom: 7px;"></div>
+                    </div>
+                    <div class="col">
+                      <div id="form-checkout__securityCode" class="container container3"
+                        style="border-radius: 5px; margin-top: 7px; margin-bottom: 7px;"></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="mb-3">
+                  <input type="text" id="form-checkout__cardholderName" class="form-control" />
+                </div>
+                <div class="mb-3" style="display: block;">
+                  <select id="form-checkout__issuer" class="form-control"></select>
+                </div>
+                <div class="mb-3" style="display: none;">
+                  <select id="form-checkout__installments" class="form-control"></select>
+                </div>
+                <div class="mb-3">
+                  <input type="email" id="form-checkout__cardholderEmail" class="form-control" />
+                </div>
+                <div class="container" style="padding-bottom: 6px;">
+                  <div class="row">
+                    <div class="col">
+                      <select id="form-checkout__identificationType" class="form-control"
+                        style="border-radius: 5px; margin-top: 7px; margin-bottom: 7px;"></select>
+                    </div>
+                    <div class="col">
+                      <input type="text" id="form-checkout__identificationNumber" class="form-control"
+                        style="border-radius: 5px; margin-top: 7px; margin-bottom: 7px;" />
+                    </div>
+                  </div>
+                </div>
+                <button type="submit" class="btn btn-lg btn-primary btn-block"
+                  id="form-checkout__submit"><strong>Pagar</strong></button>
+              </div>
+            </form>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+</body>
+
+</html>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="https://kit.fontawesome.com/2c36e9b7b1.js" crossorigin="anonymous"></script>
+<script src="static/js_login/main_3.js"></script>
+
+
+<script>
+  //////////////////////////////////////////////////////////////////////////////////////////////////
+  /* SELECT inicial al cargar la pagina donde asigno el valor del plan para poder cargar el FORM de MERCADOPAGO*/
+  const costo_total_proyecto= document.getElementById("costo_total_proyecto").value;
+  const p_costo_plan= document.getElementById("p_plan_seleccionado").textContent;
+
+  Swal.fire({
+    customClass: "sweetAlert sweetAlert2",
+    title: 'Monto de su cotización final',
+    icon: 'info',
+    customClass: {
+      container: 'my-swal-container',
+      popup: 'my-swal-popup',
+      content: 'my-swal-content'
+    },
+    text:p_costo_plan,
+    showCancelButton: false,
+    allowOutsideClick: false, // Evita que se cierre al hacer clic fuera del cuadro de diálogo
+    allowEscapeKey: false, // Evita que se cierre al presionar la tecla Esc
+    allowEnterKey: false,
+    confirmButtonText: 'OK',
+  }
+  ).then((result) => {
+    if (result.isConfirmed) {
+      // Acción a realizar si se confirma la selección
+      const p_= document.getElementById("p_plan_seleccionado");
+      p_.style.display="block";
+     // SDK MercadoPago.js
+      var str_amount = costo_total_proyecto.toString();
+      // Public Key DEIKER 
+      const mp = new MercadoPago('TEST-d2b2c312-0147-4149-ad43-f13f96bf4299');
+      const cardForm = mp.cardForm({
+        amount: str_amount,
+        iframe: true,
+        form: {
+          id: "form-checkout",
+          cardNumber: {
+            id: "form-checkout__cardNumber",
+            placeholder: "Card number",
+          },
+          expirationDate: {
+            id: "form-checkout__expirationDate",
+            placeholder: "MM/YY",
+          },
+          securityCode: {
+            id: "form-checkout__securityCode",
+            placeholder: "CCV",
+          },
+          cardholderName: {
+            id: "form-checkout__cardholderName",
+            placeholder: "Cardholder",
+          },
+          issuer: {
+            id: "form-checkout__issuer",
+            placeholder: "Issuing bank",
+          },
+          installments: {
+            id: "form-checkout__installments",
+            placeholder: "Dues",
+          },
+          identificationType: {
+            id: "form-checkout__identificationType",
+            placeholder: "ID",
+          },
+          identificationNumber: {
+            id: "form-checkout__identificationNumber",
+            placeholder: "ID",
+          },
+          cardholderEmail: {
+            id: "form-checkout__cardholderEmail",
+            placeholder: "Email",
+          },
+        },
+        callbacks: {
+          onFormMounted: error => {
+            if (error) return console.warn("Form Mounted handling error: ", error);
+          },
+          onSubmit: event => {
+          // Resto del código si no hay errores...
+          let timerInterval
+          Swal.fire({
+          title: 'Procesando pago...',
+          text: "Por favor no cierre ni abandone esta pagina mientras procesamos su pago",
+          html: '',
+          timer: 10000,
+          timerProgressBar: true,
+          allowOutsideClick: false, // Evita que se cierre al hacer clic fuera del cuadro de diálogo
+          allowEscapeKey: false, // Evita que se cierre al presionar la tecla Esc
+          allowEnterKey: false,
+          didOpen: () => {
+            Swal.showLoading()
+          },
+          willClose: () => {
+            clearInterval(timerInterval)
+          }
+        }).then((result) => {
+          /* Read more about handling dismissals below */
+          if (result.dismiss === Swal.DismissReason.timer) {
+          }
+        })
+
+            event.preventDefault();
+            const {
+              paymentMethodId: payment_method_id,
+              issuerId: issuer_id,
+              cardholderEmail: email,
+              amount,
+              token,
+              installments,
+              identificationNumber,
+              identificationType,
+            } = cardForm.getCardFormData();
+            fetch("https://mpfront.cloudaustro.com/process_payment", {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({
+                token,
+                issuer_id,
+                payment_method_id,
+                transaction_amount: Number(amount),
+                installments: Number(installments),
+                description: "Plan WiFi: " + str_amount,
+                payer: {
+                  email,
+                  identification: {
+                    type: identificationType,
+                    number: identificationNumber,
+                  },
+                },
+              }),
+            }).then(response => response.json())
+              .then(data => {
+                //console.log(data); 
+                const status = data.status;
+                const issuer_id = data.issuer_id;
+                const transaction_amount_ok = data.transaction_amount;
+                //console.log(status);
+                //console.log(token);
+                //console.log(issuer_id);
+                if (data.status === "approved") {
+                  Swal.fire({
+                    title: 'Pago aprobado con éxito',
+                    text: 'Nos pondremos en contacto con usted',
+                    icon: 'success',
+                    showCancelButton: false,
+                    confirmButtonText: 'OK'
+                  }).then((result) => {
+                    if (result.isConfirmed) {
+                      // Redireccionar a la página deseada, por ejemplo, Google
+                      window.location.href = 'https://www.google.com';
+                    }
+                  });
+                  
+              }
+                else if (data.status === "rejected") {
+                  if (data.status === "rejected" && data.message=="Payer email must be a valid email") {/* CORREO INCORRECTO*/
+                    const message = data.message;
+                    Swal.fire({
+                    customClass: "sweetAlert sweetAlert2",
+                    icon: 'error',
+                    title: "Error!",
+                    text: message,
+                    confirmButtonColor: '#3085d6',
+                    showCancelButton: false,
+                    allowOutsideClick: false, // Evita que se cierre al hacer clic fuera del cuadro de diálogo
+                    allowEscapeKey: false, // Evita que se cierre al presionar la tecla Esc
+                    allowEnterKey: false,
+                    confirmButtonText: "OK"
+                  }).then((result) => {
+                    location.reload(true);
+                  })
+                  }
+                  else if (data.status === "rejected" && data.message=="Invalid card_number_validation") {/* TARJETA INCORRECTA*/
+                    const message = data.message;
+                    Swal.fire({
+                    customClass: "sweetAlert sweetAlert2",
+                    icon: 'error',
+                    title: "Error!",
+                    text: message,
+                    confirmButtonColor: '#3085d6',
+                    showCancelButton: false,
+                    allowOutsideClick: false, // Evita que se cierre al hacer clic fuera del cuadro de diálogo
+                    allowEscapeKey: false, // Evita que se cierre al presionar la tecla Esc
+                    allowEnterKey: false,
+                    confirmButtonText: "OK"
+                  }).then((result) => {
+                    location.reload(true);
+                  })
+                  }
+                  else if (data.status === "rejected" && data.message=="Cannot infer Payment Method") {/* TARJETA INCORRECTA*/
+                    const message = data.message;
+                    Swal.fire({
+                    customClass: "sweetAlert sweetAlert2",
+                    icon: 'error',
+                    title: "Error!",
+                    text: message+ ' | Please check the card details',
+                    confirmButtonColor: '#3085d6',
+                    showCancelButton: false,
+                    allowOutsideClick: false, // Evita que se cierre al hacer clic fuera del cuadro de diálogo
+                    allowEscapeKey: false, // Evita que se cierre al presionar la tecla Esc
+                    allowEnterKey: false,
+                    confirmButtonText: "OK"
+                  }).then((result) => {
+                    location.reload(true);
+                  })
+                  }
+                  else if (data.status === "rejected") {/* Cualquier otro error*/
+                    const message = data.message;
+                    Swal.fire({
+                    customClass: "sweetAlert sweetAlert2",
+                    icon: 'error',
+                    title: "Error!",
+                    text: message+ ' | Please check the card details',
+                    confirmButtonColor: '#3085d6',
+                    showCancelButton: false,
+                    allowOutsideClick: false, // Evita que se cierre al hacer clic fuera del cuadro de diálogo
+                    allowEscapeKey: false, // Evita que se cierre al presionar la tecla Esc
+                    allowEnterKey: false,
+                    confirmButtonText: "OK"
+                  }).then((result) => {
+                    location.reload(true);
+                  }) 
+                  }
+                }
+                else { /*PENDIENTE */
+                  /* window.location.href = "rechazado.html";*/
+                }
+              })
+          }
+          ,
+onError: (type, error) => {
+      // Aquí capturas el error y lo guardas en una variable
+      const errorMessage = error ? error.toString() : 'Unknown error';
+    },
+    onCardTokenReceived: (error, token) => {
+      if (error) {
+        // Aquí obtienes el error completo
+        const errorDetails = error ? error.toString() : 'Unknown error';
+        const errorMessage2 = error.message;
+        if (errorMessage2!== undefined){
+          if(errorMessage2.includes("Invalid cardholder.identification.number")){
+          Swal.fire(
+            'Error!',
+            errorMessage2,
+            'error'
+          ) 
+        }
+        }
+
+        if (Object.keys(error[0]).length > 0) {
+          if (error[0].field=='cardNumber'){
+            var field=' Card Number';
+            if (error[0].cause=='invalid_type'){
+            var cause=error[0].cause;
+            var message=error[0].message;
+            } 
+            else if (error[0].cause=='invalid_value'){
+            var cause=error[0].cause;
+            var message=error[0].message;
+            }
+            else if (error[0].cause=='invalid_length'){
+            var cause=error[0].cause;
+            var message=error[0].message;  
+            }
+          }
+          else if (error[0].field=='securityCode'){
+            var field='Security Code'
+            if (error[0].cause=='invalid_type'){
+            var cause=error[0].cause;
+            var message=error[0].message;
+            } 
+            else if (error[0].cause=='invalid_value'){
+            var cause=error[0].cause;
+            var message=error[0].message;
+            }
+            else if (error[0].cause=='invalid_length'){
+            var cause=error[0].cause;
+            var message=error[0].message;  
+            }
+          }
+          else if (error[0].field=='expirationDate'){
+            var field='Expiration Date'
+            if (error[0].cause=='invalid_type'){
+            var cause=error[0].cause;
+            var message=error[0].message;
+            } 
+            else if (error[0].cause=='invalid_value'){
+            var cause=error[0].cause;
+            var message=error[0].message;
+            }
+            else if (error[0].cause=='invalid_length'){
+            var cause=error[0].cause;
+            var message=error[0].message;  
+            }
+          }
+          else if (error[0].code=='221'){
+            var field='Cardholder Name';
+            var message=error[0].message;
+          }
+          else if (error[0].code=='214'){
+            var field='ID';
+            var message=error[0].message;
+          }
+
+          console.log('OBJETO 1 - FIELD: '+ error[0].field +' || CAUSE: '+message)
+          Swal.fire(
+            'Error! <br>'+field,
+            message,
+            'error'
+          ) 
+        }  
+        /***************************************************************************************/
+        else if (Object.keys(error[1]).length > 0) {
+          if (error[1].field=='cardNumber'){
+            var field=' Card Number';
+            if (error[1].cause=='invalid_type'){
+            var cause=error[1].cause;
+            var message=error[1].message;
+            } 
+            else if (error[1].cause=='invalid_value'){
+            var cause=error[1].cause;
+            var message=error[1].message;
+            }
+            else if (error[1].cause=='invalid_length'){
+            var cause=error[1].cause;
+            var message=error[1].message;  
+            }
+          }
+          else if (error[1].field=='securityCode'){
+            var field='Security Code'
+            if (error[1].cause=='invalid_type'){
+            var cause=error[1].cause;
+            var message=error[1].message;
+            } 
+            else if (error[1].cause=='invalid_value'){
+            var cause=error[1].cause;
+            var message=error[1].message;
+            }
+            else if (error[1].cause=='invalid_length'){
+            var cause=error[1].cause;
+            var message=error[1].message;  
+            }
+          }
+          else if (error[1].field=='expirationDate'){
+            var field='Expiration Date'
+            if (error[1].cause=='invalid_type'){
+            var cause=error[1].cause;
+            var message=error[1].message;
+            } 
+            else if (error[1].cause=='invalid_value'){
+            var cause=error[1].cause;
+            var message=error[1].message;
+            }
+            else if (error[1].cause=='invalid_length'){
+            var cause=error[1].cause;
+            var message=error[1].message;  
+            }
+          }  
+          console.log('OBJETO 2 - FIELD: '+ error[1].field +' || CAUSE: '+message)
+          Swal.fire(
+            'Error! <br>'+field,
+            message,
+            'error'
+          ) 
+        }
+        /***************************************************************************************/
+        else if (Object.keys(error[2]).length > 0) {
+          if (error[2].field=='cardNumber'){
+            var field=' Card Number';
+            if (error[2].cause=='invalid_type'){
+            var cause=error[2].cause;
+            var message=error[2].message;
+            } 
+            else if (error[2].cause=='invalid_value'){
+            var cause=error[2].cause;
+            var message=error[2].message;
+            }
+            else if (error[2].cause=='invalid_length'){
+            var cause=error[2].cause;
+            var message=error[2].message;  
+            }
+          }
+          else if (error[2].field=='securityCode'){
+            var field='Security Code'
+            if (error[2].cause=='invalid_type'){
+            var cause=error[2].cause;
+            var message=error[2].message;
+            } 
+            else if (error[2].cause=='invalid_value'){
+            var cause=error[2].cause;
+            var message=error[2].message;
+            }
+            else if (error[2].cause=='invalid_length'){
+            var cause=error[2].cause;
+            var message=error[2].message;  
+            }
+          }
+          else if (error[2].field=='expirationDate'){
+            var field='Expiration Date'
+            if (error[2].cause=='invalid_type'){
+            var cause=error[2].cause;
+            var message=error[2].message;
+            } 
+            else if (error[2].cause=='invalid_value'){
+            var cause=error[2].cause;
+            var message=error[2].message;
+            }
+            else if (error[2].cause=='invalid_length'){
+            var cause=error[2].cause;
+            var message=error[2].message;  
+            }
+          }  
+          console.log('OBJETO 3 - FIELD: '+ error[2].field +' || CAUSE: '+message)
+          Swal.fire(
+            'Error! <br>'+field,
+            message,
+            'error'
+          ) 
+        }
+        /***************************************************************************************/
+        else if (Object.keys(error[3]).length > 0) {
+          if (error[3].field=='cardNumber'){
+            var field=' Card Number';
+            if (error[3].cause=='invalid_type'){
+            var cause=error[3].cause;
+            var message=error[3].message;
+            } 
+            else if (error[3].cause=='invalid_value'){
+            var cause=error[3].cause;
+            var message=error[3].message;
+            }
+            else if (error[3].cause=='invalid_length'){
+            var cause=error[3].cause;
+            var message=error[3].message;  
+            }
+          }
+          else if (error[3].field=='securityCode'){
+            var field='Security Code'
+            if (error[3].cause=='invalid_type'){
+            var cause=error[3].cause;
+            var message=error[3].message;
+            } 
+            else if (error[3].cause=='invalid_value'){
+            var cause=error[3].cause;
+            var message=error[3].message;
+            }
+            else if (error[3].cause=='invalid_length'){
+            var cause=error[3].cause;
+            var message=error[3].message;  
+            }
+          }
+          else if (error[3].field=='expirationDate'){
+            var field='Expiration Date'
+            if (error[3].cause=='invalid_type'){
+            var cause=error[3].cause;
+            var message=error[3].message;
+            } 
+            else if (error[3].cause=='invalid_value'){
+            var cause=error[3].cause;
+            var message=error[3].message;
+            }
+            else if (error[3].cause=='invalid_length'){
+            var cause=error[3].cause;
+            var message=error[3].message;  
+            }
+          }  
+          console.log('OBJETO 4 - FIELD: '+ error[3].field +' || CAUSE: '+message)
+          Swal.fire(
+            'Error! <br>'+field,
+            message,
+            'error'
+          ) 
+        }
+        /***************************************************************************************/
+        else if (Object.keys(error[4]).length > 0) {
+          if (error[4].field=='cardNumber'){
+            var field=' Card Number';
+            if (error[4].cause=='invalid_type'){
+            var cause=error[4].cause;
+            var message=error[4].message;
+            } 
+            else if (error[4].cause=='invalid_value'){
+            var cause=error[4].cause;
+            var message=error[4].message;
+            }
+            else if (error[4].cause=='invalid_length'){
+            var cause=error[4].cause;
+            var message=error[4].message;  
+            }
+          }
+          else if (error[4].field=='securityCode'){
+            var field='Security Code'
+            if (error[4].cause=='invalid_type'){
+            var cause=error[4].cause;
+            var message=error[4].message;
+            } 
+            else if (error[4].cause=='invalid_value'){
+            var cause=error[4].cause;
+            var message=error[4].message;
+            }
+            else if (error[4].cause=='invalid_length'){
+            var cause=error[4].cause;
+            var message=error[4].message;  
+            }
+          }
+          else if (error[4].field=='expirationDate'){
+            var field='Expiration Date'
+            if (error[4].cause=='invalid_type'){
+            var cause=error[4].cause;
+            var message=error[4].message;
+            } 
+            else if (error[4].cause=='invalid_value'){
+            var cause=error[4].cause;
+            var message=error[4].message;
+            }
+            else if (error[4].cause=='invalid_length'){
+            var cause=error[4].cause;
+            var message=error[4].message;  
+            }
+          }  
+          console.log('OBJETO 5 - FIELD: '+ error[4].field +' || CAUSE: '+message)
+          Swal.fire(
+            'Error! <br>'+field,
+            message,
+            'error'
+          ) 
+        }
+        /***************************************************************************************/
+        else if (Object.keys(error[5]).length > 0) {
+          if (error[5].field=='cardNumber'){
+            var field=' Card Number';
+            if (error[5].cause=='invalid_type'){
+            var cause=error[5].cause;
+            var message=error[5].message;
+            } 
+            else if (error[5].cause=='invalid_value'){
+            var cause=error[5].cause;
+            var message=error[5].message;
+            }
+            else if (error[5].cause=='invalid_length'){
+            var cause=error[5].cause;
+            var message=error[5].message;  
+            }
+          }
+          else if (error[5].field=='securityCode'){
+            var field='Security Code'
+            if (error[5].cause=='invalid_type'){
+            var cause=error[5].cause;
+            var message=error[5].message;
+            } 
+            else if (error[5].cause=='invalid_value'){
+            var cause=error[5].cause;
+            var message=error[5].message;
+            }
+            else if (error[5].cause=='invalid_length'){
+            var cause=error[5].cause;
+            var message=error[5].message;  
+            }
+          }
+          else if (error[5].field=='expirationDate'){
+            var field='Expiration Date'
+            if (error[5].cause=='invalid_type'){
+            var cause=error[5].cause;
+            var message=error[5].message;
+            } 
+            else if (error[5].cause=='invalid_value'){
+            var cause=error[5].cause;
+            var message=error[5].message;
+            }
+            else if (error[5].cause=='invalid_length'){
+            var cause=error[5].cause;
+            var message=error[5].message;  
+            }
+          }  
+          console.log('OBJETO 6 - FIELD: '+ error[5].field +' || CAUSE: '+message)
+          Swal.fire(
+            'Error! <br>'+field,
+            message,
+            'error'
+          ) 
+        }
+        /***************************************************************************************/
+        else if (Object.keys(error[6]).length > 0) {
+          if (error[6].field=='cardNumber'){
+            var field=' Card Number';
+            if (error[6].cause=='invalid_type'){
+            var cause=error[6].cause;
+            var message=error[6].message;
+            } 
+            else if (error[6].cause=='invalid_value'){
+            var cause=error[6].cause;
+            var message=error[6].message;
+            }
+            else if (error[6].cause=='invalid_length'){
+            var cause=error[6].cause;
+            var message=error[6].message;  
+            }
+          }
+          else if (error[6].field=='securityCode'){
+            var field='Security Code'
+            if (error[6].cause=='invalid_type'){
+            var cause=error[6].cause;
+            var message=error[6].message;
+            } 
+            else if (error[6].cause=='invalid_value'){
+            var cause=error[6].cause;
+            var message=error[6].message;
+            }
+            else if (error[6].cause=='invalid_length'){
+            var cause=error[6].cause;
+            var message=error[6].message;  
+            }
+          }
+          else if (error[6].field=='expirationDate'){
+            var field='Expiration Date'
+            if (error[6].cause=='invalid_type'){
+            var cause=error[6].cause;
+            var message=error[6].message;
+            } 
+            else if (error[6].cause=='invalid_value'){
+            var cause=error[6].cause;
+            var message=error[6].message;
+            }
+            else if (error[6].cause=='invalid_length'){
+            var cause=error[6].cause;
+            var message=error[6].message;  
+            }
+          }  
+          console.log('OBJETO 7 - FIELD: '+ error[6].field +' || CAUSE: '+message)
+          Swal.fire(
+            'Error! <br>'+field,
+            message,
+            'error'
+          ) 
+        }
+        /***************************************************************************************/
+        else if (Object.keys(error[7]).length > 0) {
+          if (error[7].field=='cardNumber'){
+            var field=' Card Number';
+            if (error[7].cause=='invalid_type'){
+            var cause=error[7].cause;
+            var message=error[7].message;
+            } 
+            else if (error[7].cause=='invalid_value'){
+            var cause=error[7].cause;
+            var message=error[7].message;
+            }
+            else if (error[7].cause=='invalid_length'){
+            var cause=error[7].cause;
+            var message=error[7].message;  
+            }
+          }
+          else if (error[7].field=='securityCode'){
+            var field='Security Code'
+            if (error[7].cause=='invalid_type'){
+            var cause=error[7].cause;
+            var message=error[7].message;
+            } 
+            else if (error[7].cause=='invalid_value'){
+            var cause=error[7].cause;
+            var message=error[7].message;
+            }
+            else if (error[7].cause=='invalid_length'){
+            var cause=error[7].cause;
+            var message=error[7].message;  
+            }
+          }
+          else if (error[7].field=='expirationDate'){
+            var field='Expiration Date'
+            if (error[7].cause=='invalid_type'){
+            var cause=error[7].cause;
+            var message=error[7].message;
+            } 
+            else if (error[7].cause=='invalid_value'){
+            var cause=error[7].cause;
+            var message=error[7].message;
+            }
+            else if (error[7].cause=='invalid_length'){
+            var cause=error[7].cause;
+            var message=error[7].message;  
+            }
+          }  
+          console.log('OBJETO 8 - FIELD: '+ error[7].field +' || CAUSE: '+message)
+          Swal.fire(
+            'Error! <br>'+field,
+            message,
+            'error'
+          ) 
+        }
+        /***************************************************************************************/
+        else if (Object.keys(error[8]).length > 0) {
+          if (error[8].field=='cardNumber'){
+            var field=' Card Number';
+            if (error[8].cause=='invalid_type'){
+            var cause=error[8].cause;
+            var message=error[8].message;
+            } 
+            else if (error[8].cause=='invalid_value'){
+            var cause=error[8].cause;
+            var message=error[8].message;
+            }
+            else if (error[8].cause=='invalid_length'){
+            var cause=error[8].cause;
+            var message=error[8].message;  
+            }
+          }
+          else if (error[8].field=='securityCode'){
+            var field='Security Code'
+            if (error[8].cause=='invalid_type'){
+            var cause=error[8].cause;
+            var message=error[8].message;
+            } 
+            else if (error[8].cause=='invalid_value'){
+            var cause=error[8].cause;
+            var message=error[8].message;
+            }
+            else if (error[8].cause=='invalid_length'){
+            var cause=error[8].cause;
+            var message=error[8].message;  
+            }
+          }
+          else if (error[8].field=='expirationDate'){
+            var field='Expiration Date'
+            if (error[8].cause=='invalid_type'){
+            var cause=error[8].cause;
+            var message=error[8].message;
+            } 
+            else if (error[8].cause=='invalid_value'){
+            var cause=error[8].cause;
+            var message=error[8].message;
+            }
+            else if (error[8].cause=='invalid_length'){
+            var cause=error[8].cause;
+            var message=error[8].message;  
+            }
+          }  
+          console.log('OBJETO 9 - FIELD: '+ error[8].field +' || CAUSE: '+message)
+          Swal.fire(
+            'Error! <br>'+field,
+            message,
+            'error'
+          ) 
+        }
+        /***************************************************************************************/
+        else if (Object.keys(error[9]).length > 0) {
+          if (error[9].field=='cardNumber'){
+            var field=' Card Number';
+            if (error[9].cause=='invalid_type'){
+            var cause=error[9].cause;
+            var message=error[9].message;
+            } 
+            else if (error[9].cause=='invalid_value'){
+            var cause=error[9].cause;
+            var message=error[9].message;
+            }
+            else if (error[9].cause=='invalid_length'){
+            var cause=error[9].cause;
+            var message=error[9].message;  
+            }
+          }
+          else if (error[9].field=='securityCode'){
+            var field='Security Code'
+            if (error[9].cause=='invalid_type'){
+            var cause=error[9].cause;
+            var message=error[9].message;
+            } 
+            else if (error[9].cause=='invalid_value'){
+            var cause=error[9].cause;
+            var message=error[9].message;
+            }
+            else if (error[9].cause=='invalid_length'){
+            var cause=error[9].cause;
+            var message=error[9].message;  
+            }
+          }
+          else if (error[9].field=='expirationDate'){
+            var field='Expiration Date'
+            if (error[9].cause=='invalid_type'){
+            var cause=error[9].cause;
+            var message=error[9].message;
+            } 
+            else if (error[9].cause=='invalid_value'){
+            var cause=error[9].cause;
+            var message=error[9].message;
+            }
+            else if (error[9].cause=='invalid_length'){
+            var cause=error[9].cause;
+            var message=error[9].message;  
+            }
+          }  
+          console.log('OBJETO 10 - FIELD: '+ error[9].field +' || CAUSE: '+message)
+          Swal.fire(
+            'Error! <br>'+field,
+            message,
+            'error'
+          ) 
+        }
+        /***************************************************************************************/
+        else if (Object.keys(error[10]).length > 0) {
+          if (error[10].field=='cardNumber'){
+            var field=' Card Number';
+            if (error[10].cause=='invalid_type'){
+            var cause=error[10].cause;
+            var message=error[10].message;
+            } 
+            else if (error[10].cause=='invalid_value'){
+            var cause=error[10].cause;
+            var message=error[10].message;
+            }
+            else if (error[10].cause=='invalid_length'){
+            var cause=error[10].cause;
+            var message=error[10].message;  
+            }
+          }
+          else if (error[10].field=='securityCode'){
+            var field='Security Code'
+            if (error[10].cause=='invalid_type'){
+            var cause=error[10].cause;
+            var message=error[10].message;
+            } 
+            else if (error[10].cause=='invalid_value'){
+            var cause=error[10].cause;
+            var message=error[10].message;
+            }
+            else if (error[10].cause=='invalid_length'){
+            var cause=error[10].cause;
+            var message=error[10].message;  
+            }
+          }
+          else if (error[10].field=='expirationDate'){
+            var field='Expiration Date'
+            if (error[10].cause=='invalid_type'){
+            var cause=error[10].cause;
+            var message=error[10].message;
+            } 
+            else if (error[10].cause=='invalid_value'){
+            var cause=error[10].cause;
+            var message=error[10].message;
+            }
+            else if (error[10].cause=='invalid_length'){
+            var cause=error[10].cause;
+            var message=error[10].message;  
+            }
+          }  
+          console.log('OBJETO 11 - FIELD: '+ error[10].field +' || CAUSE: '+message)
+          Swal.fire(
+            'Error! <br>'+field,
+            message,
+            'error'
+          ) 
+        }
+        /***************************************************************************************/
+
+        /////////////////////////////////////////////////////////////////////////////////////////
+      } else {
+        // Resto del código si no hay errores...
+        let timerInterval
+        Swal.fire({
+        title: 'Processing payment...',
+        text: "Please don't leave or close this window while we process your payment",
+        html: '',
+        timer: 10000,
+        timerProgressBar: true,
+        allowOutsideClick: false, // Evita que se cierre al hacer clic fuera del cuadro de diálogo
+        allowEscapeKey: false, // Evita que se cierre al presionar la tecla Esc
+        allowEnterKey: false,
+        didOpen: () => {
+          Swal.showLoading()
+        },
+        willClose: () => {
+          clearInterval(timerInterval)
+        }
+      }).then((result) => {
+        /* Read more about handling dismissals below */
+        if (result.dismiss === Swal.DismissReason.timer) {
+        }
+      })
+      }
+    }
+  }
+});
+
+  }
+  });
+</script>

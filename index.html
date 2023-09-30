@@ -47,20 +47,6 @@
             alt="Logo DDB Web Studio"
           />
         </a>
-        <a id="btn-en" style="display: none">
-          <img
-            class="img_idioma"
-            src="/static/img/usa.png"
-            alt="idioma_english"
-          />
-        </a>
-        <a id="btn-es" style="display: none">
-          <img
-            class="img_idioma"
-            src="/static/img/esp.png"
-            alt="idioma_espanish"
-          />
-        </a>
       </div>
       <div class="menusito-toggle">
         <div class="menusito-icon">
@@ -98,7 +84,7 @@
         <h2 class="contacto-principal__titulo" data-i18n="contact.title">
           Brillantes Opciones: Cotiza Tus Proyectos con Estilo
         </h2>
-        <form class="contacto-formulario">
+        <form id="form_pay" class="contacto-formulario">
           <div class="planes-container">
             <div class="plan" id="oro">
               <input
@@ -645,7 +631,13 @@
               </div>
             </div>
           </div>
-
+          <input
+            id="costo_total_proyecto"
+            type="text"
+            style="display: none"
+            name="costo_total_proyecto"
+            value=""
+          />
           <button
             id="boton_enviar_cotizacion"
             type="button"
@@ -693,7 +685,7 @@
             placeholder="Mensaje"
           />
           <button
-            type="submit"
+            type="button"
             class="main-containers__right-button"
             disabled
             data-i18n="send"

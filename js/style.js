@@ -369,15 +369,37 @@ if (nombreInput.value!='' && emailInput.value!=''  && inputPais.value!=''){
         '<p>Pais: ' + client.pais + '</p>'+
         '</div>',
         showCancelButton: false,
-        confirmButtonText: 'OK',
+        confirmButtonText: 'Cotizar',
         allowOutsideClick: false,
+        showDenyButton: true,
+        denyButtonText: "Pagar cotización",
         customClass: {
-        confirmButton: 'custom-swal-confirm-button'
+        confirmButton: 'custom-swal-confirm-button',
         }
       }).then((result) => {
         if (result.isConfirmed) {
           // Acciones adicionales después de hacer clic en OK
+          alert('Voy a pagar');
         }
+        else if (result.isDenied) {
+          Swal.fire({
+              title: "Procesando",
+              text: "Por favor espera...",
+              allowOutsideClick: false,
+              allowEscapeKey: false,
+              showConfirmButton: false,
+              willOpen: function () {
+                  //Swal.showLoading();
+                  const form_pay=document.getElementById("form_pay");
+                  const costo_total_text_=document.getElementById("costo_total_span").textContent;
+                  const costo_total_proyecto=document.getElementById("costo_total_proyecto");
+                  costo_total_proyecto.value=costo_total_text_;
+                  form_pay.method = "post";
+                  form_pay.action = "https://mpfront.cloudaustro.com/new_payment";
+                  form_pay.submit();
+              },
+          });
+      }
     });
 }
 else{
