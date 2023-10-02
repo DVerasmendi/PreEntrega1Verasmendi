@@ -8,7 +8,7 @@ plans.forEach((plan) => {
     const radioInput = plan.querySelector("input[type='radio']");
     radioInput.checked = true;
 
-    // Mostrar un alert según la seleccion
+    // Mostrar un alert segun la seleccion
     const planValue = radioInput.value.split('|')[0];
     let alertMessage = "";
 
@@ -23,9 +23,9 @@ plans.forEach((plan) => {
             '<ul class="list_plan">' +
             '<li>Website dinámica</li>' +
             '<li>Integraciones de pago</li>' +
-            '<li>Asesoría en UX/UI</li>' +
-            '<li>Asesoría en servers</li>' +
-            '<li>Asesoría gratuita por 3 meses</li>' +
+            '<li>Asesoria en UX/UI</li>' +
+            '<li>Asesoria en servers</li>' +
+            '<li>Asesoria gratuita por 3 meses</li>' +
             '</ul>'+
             '</div>',
             showCancelButton: false,
@@ -36,7 +36,7 @@ plans.forEach((plan) => {
             }
           }).then((result) => {
             if (result.isConfirmed) {
-              // Acciones adicionales después de hacer clic en OK
+              // Acciones adicionales despues de hacer clic en OK
             }          
           });
         break;
@@ -50,7 +50,7 @@ plans.forEach((plan) => {
             '<ul class="list_plan">' +
             '<li>Website dinámica</li>' +
             '<li>Integraciones de pago</li>' +
-            '<li>Asesoría en UX/UI</li>' +
+            '<li>Asesoria en UX/UI</li>' +
             '</ul>'+
             '</div>',
             showCancelButton: false,
@@ -61,7 +61,7 @@ plans.forEach((plan) => {
             }
           }).then((result) => {
             if (result.isConfirmed) {
-              // Acciones adicionales después de hacer clic en OK
+              // Acciones adicionales despues de hacer clic en OK
             }    
           });
         break;
@@ -74,7 +74,7 @@ plans.forEach((plan) => {
             '<h3 class="title_alert_plans">Beneficios</h3>'+
             '<ul class="list_plan">' +
             '<li>Website estática</li>' +
-            '<li>Asesoría en UX/UI</li>' +
+            '<li>Asesoria en UX/UI</li>' +
             '</ul>'+
             '</div>',
             showCancelButton: false,
@@ -85,7 +85,7 @@ plans.forEach((plan) => {
             }
           }).then((result) => {
             if (result.isConfirmed) {
-              // Acciones adicionales después de hacer clic en OK
+              // Acciones adicionales despues de hacer clic en OK
             }    
           });
         break;
@@ -198,7 +198,7 @@ input.addEventListener("input", function () {
     imagen.src =
       "https://flagcdn.com/48x36/" +
       opcion.value.toLowerCase() +
-      ".png"; // Ajusta la ruta de la imagen según corresponda
+      ".png"; // Ajusta la ruta de la imagen segun corresponda
     imagen.classList.add("imagen-label");
     label.appendChild(imagen);
 
@@ -244,7 +244,7 @@ input.value = ""; // Borrar el contenido del input al hacer clic
 
 // Array para almacenar elementos seleccionados
 document.addEventListener("DOMContentLoaded", function () {
-  // Obtén todos los elementos de tipo checkbox en la página
+  // Obten todos los elementos de tipo checkbox en la página
   const checkboxes = document.querySelectorAll('input[type="checkbox"]');
   // Recorre todos los checkboxes y desmárcalos
   checkboxes.forEach((checkbox) => {
@@ -360,7 +360,7 @@ if (nombreInput.value!='' && emailInput.value!=''  && inputPais.value!=''){
 
     Swal.fire({
         icon: 'success',
-        title: '<h1 class="titulos_sweet_alert">Cotizacion a enviar</h1>',
+        title: '<h1 class="titulos_sweet_alert">Cotización a enviar</h1>',
         html: '<div class="image-container"><img src="../static/img/contento.png" alt="" style="width: 50px;"></div>' +
         '<div class="list-container_plan_alert">'+  
         '<h3 class="title_alert_plans">' + tipo_plan + '</h3>'+
@@ -378,7 +378,7 @@ if (nombreInput.value!='' && emailInput.value!=''  && inputPais.value!=''){
         }
       }).then((result) => {
         if (result.isConfirmed) {
-          // Acciones adicionales después de hacer clic en OK
+          // Acciones adicionales despues de hacer clic en OK
           alert('Voy a pagar');
         }
         else if (result.isDenied) {
@@ -414,19 +414,21 @@ else{
       });
 }
   });
- /////////  STORAGE /////////////
+/////////  STORAGE /////////////
 // Define la constante nuevaCotizacion con valores iniciales
 const nuevaCotizacion = {
   nombre: '',
   email: '',
   plan: '',
 };
+
 // Funcion para actualizar nuevaCotizacion
 function actualizarCotizacion() {
-  // Obtén los valores actuales del nombre, email y plan
+  // Obten los valores actuales del nombre, email y plan
   const nombreInput = document.getElementById('name_form').value;
   const emailInput = document.getElementById('email_form').value;
   const planSeleccionado = document.querySelector('input[type="radio"][name="plan"]:checked');
+
   // Verifica si se ha seleccionado un plan
   if (planSeleccionado) {
     // Divide el valor del plan seleccionado para obtener el nombre
@@ -434,18 +436,23 @@ function actualizarCotizacion() {
     // Actualiza la propiedad "plan" en nuevaCotizacion
     nuevaCotizacion.plan = planName;
   }
+
   // Actualiza las propiedades de nuevaCotizacion
   nuevaCotizacion.nombre = nombreInput;
   nuevaCotizacion.email = emailInput;
+
   // Imprime nuevaCotizacion en la consola
   console.log('nuevaCotizacion:', nuevaCotizacion);
+
   // Llama a la funcion para guardar en el localStorage
   guardarCotizacionEnLocalStorage();
 }
+
 // Funcion para observar cambios en el DOM
 function observarCambiosDOM() {
-  const nombreInput = document.querySelector('.main-containers__right-input[placeholder="Full name"]');
-  const emailInput = document.querySelector('.main-containers__right-input[placeholder="Email Address"]');
+  const nombreInput = document.getElementById('name_form');
+  const emailInput = document.getElementById('email_form');
+
   // Configura el observador para los cambios en el contenido de los elementos input
   const observer = new MutationObserver(() => {
     actualizarCotizacion();
@@ -465,42 +472,50 @@ function guardarCotizacionEnLocalStorage() {
   localStorage.setItem('cotizacion', JSON.stringify(nuevaCotizacion));
 }
 
-// También puedes cargar los datos del usuario al cargar la página
+// Tambien puedes cargar los datos del usuario al cargar la página
 window.addEventListener('load', function() {
   const cotizacionGuardada = localStorage.getItem('cotizacion');
+  console.log(cotizacionGuardada)
+
   if (cotizacionGuardada) {
     const cotizacionParseada = JSON.parse(cotizacionGuardada);
-    // Rellena los campos del formulario con los datos del usuario
-    document.querySelector('.main-containers__right-input[placeholder="Full name"]').value = cotizacionParseada.nombre;
-    document.querySelector('.main-containers__right-input[placeholder="Email Address"]').value = cotizacionParseada.email;
-      // Verifica si se selecciono un plan anteriormente y marca el radio correspondiente
-  radio_correspondiente= cotizacionParseada.plan;
-  // Obtén todos los elementos de radio con el nombre "plan"
-const radioButtons = document.querySelectorAll('input[type="radio"][name="plan"]');
 
-// Recorre los radio buttons y busca una coincidencia en el valor
-radioButtons.forEach(function(radioButton) {
-  const [planName] = radioButton.value.split('|'); // Obtiene el nombre del plan del valor
-  // Compara el plan guardado con el plan del radio button
-  if (radio_correspondiente === planName) {
-    planNames=planName.toLowerCase().split(' ')[1];
-    // Obtén los divs
-    const divs = document.querySelectorAll('div');
-    // Recorre los divs
-    divs.forEach((div) => {
-      // Compara el ID del div con el texto
-      if (div.id == planNames) {
-        // Si coincide, agrega una clase nueva
-        radioButton.checked = true; // Marca el radio button si hay coincidencia
-        div.classList.add('plan', 'selected');
+    // Rellena los campos del formulario con los datos del usuario
+    document.getElementById('name_form').value = cotizacionParseada.nombre;
+    document.getElementById('email_form').value = cotizacionParseada.email;
+
+    // Verifica si se selecciono un plan anteriormente y marca el radio correspondiente
+    radio_correspondiente = cotizacionParseada.plan;
+
+    // Obten todos los elementos de radio con el nombre "plan"
+    const radioButtons = document.querySelectorAll('input[type="radio"][name="plan"]');
+
+    // Recorre los radio buttons y busca una coincidencia en el valor
+    radioButtons.forEach(function(radioButton) {
+      const [planName] = radioButton.value.split('|'); // Obtiene el nombre del plan del valor
+
+      // Compara el plan guardado con el plan del radio button
+      if (radio_correspondiente === planName) {
+        planNames = planName.toLowerCase().split(' ')[1];
+
+        // Obten los divs
+        const divs = document.querySelectorAll('div');
+
+        // Recorre los divs
+        divs.forEach((div) => {
+          // Compara el ID del div con el texto
+          if (div.id == planNames) {
+            // Si coincide, agrega una clase nueva
+            radioButton.checked = true; // Marca el radio button si hay coincidencia
+            div.classList.add('plan', 'selected');
+          }
+        });
       }
     });
   }
 });
-  }
-});
 
-// Obtén todos los elementos de radio con el nombre "plan"
+// Obten todos los elementos de radio con el nombre "plan"
 const radioButtons = document.querySelectorAll('input[type="radio"][name="plan"]');
 
 // Agrega un evento change a cada radio
@@ -510,5 +525,6 @@ radioButtons.forEach(function(radioButton) {
     actualizarCotizacion();
   });
 });
+
 // Llama a la funcion actualizarCotizacion inicialmente para capturar los valores iniciales
 actualizarCotizacion();

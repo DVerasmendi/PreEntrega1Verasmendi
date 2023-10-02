@@ -1,5 +1,12 @@
 Hola! Mi nombre es Deiker Verasmendi, y este es mi proyecto final de JS.
 
+Siguiendo la pauta de mi corrección anterior, el uso de LocalStorage si esta funcionando, pero solo en firefox, no se porque razon en chrome no me esta funcionando , incluso probe en modo incognito y nada, en firefox funciona en modo incognito y modo normal, posiblemente sea por politicas de bloqueo o algo asi estuve investigando. 
+
+Adjunto capturas de pruebas en chrome y firefox.
+
+Chrome: Modo normal :https://prnt.sc/-WvUvcTWneZ1  Modo incognito : https://prnt.sc/n_6pOjgEdZV7
+
+Firefox: Modo normal: https://prnt.sc/IlejkqQZdtPr Modo incognito : https://prnt.sc/mT3Xm65kPFFu
 
 La primeras 3 preentregas de mi proyecto se basaron en construir el simulador de cotización para proyectos webs, para la última entrega realice lo siguiente.
 
@@ -16,6 +23,7 @@ De esta forma puedo llamar todas las veces que quiera este portal de pago desde 
 
 
 - Para acceder via web a mi aplicación de cotizador pueden ingresar a:  https://ddbcotizador.cloudaustro.com/
+- Para invocar la parte de pago debe presionar el boton de pagar cotización : https://prnt.sc/9s1k3PyGa_Fu
 - Para consultar si la API creada en el backend esta corriendo de forma exitosa pueden ingresar a:  https://mpfront.cloudaustro.com/
 
 Tanto el cotizador como el Flask fueron levantados en contenedores de docker, en ubuntu. 
